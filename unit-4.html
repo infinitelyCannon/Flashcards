@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+    	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Unit 4</title>
+		<meta name="description" content="" />
+		<meta name="author" content="infinitelyCannon" />
+		<script src="scripts/jquery-1.10.2.min.js"></script>
+		<script src="scripts/defaults.js"></script>
+		<script src="scripts/jquery.mobile-1.4.1.min.js"></script>
+		<script src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
+        <script>
+            function goto(){
+            	$("#options").panel("close");
+            	var card = prompt("Goto card?");
+            	mySwipe.slide(card - 1, 1000);
+            }
+        </script>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<link rel="stylesheet" href="styles/jquery.mobile-1.4.1.css" />
+		<!-- This css file is for the Swipe.js UI -->
+		<link rel="stylesheet" href="styles/style.css" type="text/css" />
+		<link rel="stylesheet" href="styles/jquery-ui-1.10.3.custom.css" />
+		<style>
+			.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+}
+		</style>
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    </head>
+    <body>
+        <div data-role="page" id="page1">
+            <div data-role="header" id="header">
+                <a href="#tocPanel" data-role="button" data-icon="bars">Contents</a>
+                <h1>Unit 4</h1>
+                <a href="#options" data-icon="gear" data-role="button">Settings</a>
+            </div>
+            <div data-role="content">
+            	<div id="mySwipe" class="swipe">
+            		<div class="swipe-wrap">
+            			<div>
+            				<div class="tabs">
+            					<span class="card-num">1</span>
+            					<ul>
+            						<li><a href="#side-0">Front</a></li>
+            						<li><a href="#side-1">Back</a></li>
+            						<li><a href="#side-2">Synonyms</a></li>
+            					</ul>
+            					<div id="side-0">
+            						<h2>Atrophy</h2>
+            					</div>
+            					<div id="side-1">
+            						<ol>
+            							<li>The wasting away of a body organ or tissue; any progressive decline or failure.</li>
+            							<li>To waste away.</li>
+            						</ol>
+            					</div>
+            					<div id="side-2">
+            						<ol>
+            							<li>Degeneration, deterioration</li>
+            							<li>Wither</li>
+            						</ol>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">2</span>
+            						<ul>
+            							<li><a href="#side-3">Front</a></li>
+            							<li><a href="#side-4">Back</a></li>
+            							<li><a href="#side-5">Synonyms</a></li>
+            						</ul>
+            						<div id="side-3">
+            							<h2>Bastion</h2>
+            						</div>
+            						<div id="side-4">
+            							<h2>A fortified place, stronghold.</h2>
+            						</div>
+            						<div id="side-5">
+            							<h2>Citadel, rampart, parapet</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">3</span>
+            						<ul>
+            							<li><a href="#side-6">Front</a></li>
+            							<li><a href="#side-7">Back</a></li>
+            							<li><a href="#side-8">Synonyms</a></li>
+            						</ul>
+            						<div id="side-6">
+            							<h2>Concord</h2>
+            						</div>
+            						<div id="side-7">
+            							<h2>A state of agreement, harmony, unanimity; a treaty, pact.</h2>
+            						</div>
+            						<div id="side-8">
+            							<h2>None</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div class="tabs">
+            					<span class="card-num">4</span>
+            						<ul>
+            							<li><a href="#side-9">Front</a></li>
+            							<li><a href="#side-10">Back</a></li>
+            							<li><a href="#side-11">Synonyms</a></li>
+            						</ul>
+            						<div id="side-9">
+            							<h2>Consummate</h2>
+            						</div>
+            						<div id="side-10">
+            							<ol>
+            								<li>Complete or perfect in the highest degree.</li>
+            								<li>To bring to a state of completion or perfection.</li>
+            							</ol>
+            						</div>
+            						<div id="side-11">
+            							<ol>
+            								<li>Masterful</li>
+            								<li>Clinch, conclude</li>
+            							</ol>
+            						</div>
+            					</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">5</span>
+            						<ul>
+            							<li><a href="#side-12">Front</a></li>
+            							<li><a href="#side-13">Back</a></li>
+            							<li><a href="#side-14">Synonyms</a></li>
+            						</ul>
+            						<div id="side-12">
+            							<h2>Disarray</h2>
+            						</div>
+            						<div id="side-13">
+            							<ol>
+            								<li>Disorder, confusion</li>
+            								<li>To throw into disorder</li>
+            							</ol>
+            						</div>
+            						<div id="side-14">
+            							<ol>
+            								<li>Disorganization</li>
+            								<li>Dishevel, mess up</li>
+            							</ol>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">6</span>
+            						<ul>
+            							<li><a href="#side-15">Front</a></li>
+            							<li><a href="#side-16">Back</a></li>
+            							<li><a href="#side-17">Synonyms</a></li>
+            						</ul>
+            						<div id="side-15">
+            							<h2>Exigency</h2>
+            						</div>
+            						<div id="side-16">
+            							<h2>Urgency, pressure; urgent demand, pressing need, an emergency.</h2>
+            						</div>
+            						<div id="side-17">
+            							<h2>Requirement, crisis</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">7</span>
+            						<ul>
+            							<li><a href="#side-18">Front</a></li>
+            							<li><a href="#side-19">Back</a></li>
+            							<li><a href="#side-20">Synonyms</a></li>
+            						</ul>
+            						<div id="side-18">
+            							<h2>Flotsam</h2>
+            						</div>
+            						<div id="side-19">
+            							<h2>Floating debris; homeless, impoverished people.</h2>
+            						</div>
+            						<div id="side-20">
+            							<h2>Floating wreckage</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">8</span>
+            						<ul>
+            							<li><a href="#side-21">Front</a></li>
+            							<li><a href="#side-22">Back</a></li>
+            							<li><a href="#side-23">Synonyms</a></li>
+            						</ul>
+            						<div id="side-21">
+            							<h2>Frenetic</h2>
+            						</div>
+            						<div id="side-22">
+            							<h2>Frenzied, highly agitated</h2>
+            						</div>
+            						<div id="side-23">
+            							<h2>Frantic, overwrought</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">9</span>
+            						<ul>
+            							<li><a href="#side-24">Front</a></li>
+            							<li><a href="#side-25">Back</a></li>
+            							<li><a href="#side-26">Synonyms</a></li>
+            						</ul>
+            						<div id="side-24">
+            							<h2>Glean</h2>
+            						</div>
+            						<div id="side-25">
+            							<h2>To gather bit by bit; to gather small quantities of grain left in a field by the reapers.</h2>
+            						</div>
+            						<div id="side-26">
+            							<h2>Cull, pick up</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">10</span>
+            						<ul>
+            							<li><a href="#side-27">Front</a></li>
+            							<li><a href="#side-28">Back</a></li>
+            							<li><a href="#side-29">Synonyms</a></li>
+            						</ul>
+            						<div id="side-27">
+            							<h2>Grouse</h2>
+            						</div>
+            						<div id="side-28">
+            							<ol>
+            								<li>A type of game bird; a complaint</li>
+            								<li>To complain, grumble</li>
+            							</ol>
+            						</div>
+            						<div id="side-29">
+            							<h2>(v.) kvetch, bellyache</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">11</span>
+            						<ul>
+            							<li><a href="#side-30">Front</a></li>
+            							<li><a href="#side-31">Back</a></li>
+            							<li><a href="#side-32">Synonyms</a></li>
+            						</ul>
+            						<div id="side-30">
+            							<h2>Incarcerate</h2>
+            						</div>
+            						<div id="side-31">
+            							<h2>To imprison, confine, jail.</h2>
+            						</div>
+            						<div id="side-32">
+            							<h2>Intern</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">12</span>
+            						<ul>
+            							<li><a href="#side-33">Front</a></li>
+            							<li><a href="#side-34">Back</a></li>
+            							<li><a href="#side-35">Synonyms</a></li>
+            						</ul>
+            						<div id="side-33">
+            							<h2>Incumbent</h2>
+            						</div>
+            						<div id="side-34">
+            							<ol>
+            								<li>Obligatory, required</li>
+            								<li>One who holds a specific office at the time spoken of.</li>
+            							</ol>
+            						</div>
+            						<div id="side-35">
+            							<h2>Mandatory, necessary</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">13</span>
+            						<ul>
+            							<li><a href="#side-36">Front</a></li>
+            							<li><a href="#side-37">Back</a></li>
+            							<li><a href="#side-38">Synonyms</a></li>
+            						</ul>
+            						<div id="side-36">
+            							<h2>Jocular</h2>
+            						</div>
+            						<div id="side-37">
+            							<h2>Humorous, jesting, jolly, joking.</h2>
+            						</div>
+            						<div id="side-38">
+            							<h2>Waggish, facetious, droll</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">14</span>
+            						<ul>
+            							<li><a href="#side-39">Front</a></li>
+            							<li><a href="#side-40">Back</a></li>
+            							<li><a href="#side-41">Synonyms</a></li>
+            						</ul>
+            						<div id="side-39">
+            							<h2>Ludicrous</h2>
+            						</div>
+            						<div id="side-40">
+            							<h2>Ridiculous, laughable, absurd.</h2>
+            						</div>
+            						<div id="side-41">
+            							<h2>Risible, preposterous</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">15</span>
+            						<ul>
+            							<li><a href="#side-45">Front</a></li>
+            							<li><a href="#side-46">Back</a></li>
+            							<li><a href="#side-47">Synonyms</a></li>
+            						</ul>
+            						<div id="side-45">
+            							<h2>Mordant</h2>
+            						</div>
+            						<div id="side-46">
+            							<h2>Biting or caustic in thought, manner, or style; sharply or bitterly harsh.</h2>
+            						</div>
+            						<div id="side-47">
+            							<h2>Acrimonious, acidulous, sardonic, scathing</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">16</span>
+            						<ul>
+            							<li><a href="#side-48">Front</a></li>
+            							<li><a href="#side-49">Back</a></li>
+            							<li><a href="#side-50">Synonyms</a></li>
+            						</ul>
+            						<div id="side-48">
+            							<h2>Nettle</h2>
+            						</div>
+            						<div id="side-49">
+            							<ol>
+            								<li>A prickly or stinging plant</li>
+            								<li>To arouse displeasure, impatience, or anger; to vex or irritate severely</li>
+            							</ol>
+            						</div>
+            						<div id="side-50">
+            							<h2>Peeve, annoy, incense, gall</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">17</span>
+            						<ul>
+            							<li><a href="#side-51">Front</a></li>
+            							<li><a href="#side-52">Back</a></li>
+            							<li><a href="#side-53">Synonyms</a></li>
+            						</ul>
+            						<div id="side-51">
+            							<h2>Pecuniary</h2>
+            						</div>
+            						<div id="side-52">
+            							<h2>Consisting of or measured in money; of or related to money</h2>
+            						</div>
+            						<div id="side-53">
+            							<h2>Monetary</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">18</span>
+            						<ul>
+            							<li><a href="#side-54">Front</a></li>
+            							<li><a href="#side-55">Back</a></li>
+            							<li><a href="#side-56">Synonyms</a></li>
+            						</ul>
+            						<div id="side-54">
+            							<h2>Pusillanimous</h2>
+            						</div>
+            						<div id="side-55">
+            							<h2>Contemptibly cowardly or mean-spirited.</h2>
+            						</div>
+            						<div id="side-56">
+            							<h2>Lily-livered</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">19</span>
+            						<ul>
+            							<li><a href="#side-57">Front</a></li>
+            							<li><a href="#side-58">Back</a></li>
+            							<li><a href="#side-59">Synonyms</a></li>
+            						</ul>
+            						<div id="side-57">
+            							<h2>Recumbent</h2>
+            						</div>
+            						<div id="side-58">
+            							<h2>In a reclining position, lying down, in the posture of one sleeping or resting.</h2>
+            						</div>
+            						<div id="side-59">
+            							<h2>Prone, supine, inactive</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            			<div>
+            				<div>
+            					<div class="tabs">
+            						<span class="card-num">20</span>
+            						<ul>
+            							<li><a href="#side-60">Front</a></li>
+            							<li><a href="#side-61">Back</a></li>
+            							<li><a href="#side-62">Synonyms</a></li>
+            						</ul>
+            						<div id="side-60">
+            							<h2>Stratagem</h2>
+            						</div>
+            						<div id="side-61">
+            							<h2>A scheme to outwit or deceive an opponent or to gain an end.</h2>
+            						</div>
+            						<div id="side-62">
+            							<h2>Trick, ploy, subterfuge.</h2>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            	</div>
+            </div>
+            <div data-role="panel" id="tocPanel" data-display="push" data-swipe-close="false" data-dismissible="false">
+            	<ul data-role="listview">
+				<li data-theme="b">
+					<a href="Library.html">Vocabulary: Unit 4</a>
+					<a href="#header" data-rel="close" data-icon="delete">Close</a>
+				</li>
+				<li>
+					<a href="unit-1.html">Unit 1</a>
+				</li>
+				<li>
+					<a href="unit-2.html">Unit 2</a>
+				</li>
+				<li>
+					<a href="unit-3.html">Unit 3</a>
+				</li>
+				<li>
+					<a class="ui-disabled">Unit 4</a>
+				</li>
+				<li>
+					<a href="unit-5.html">Unit 5</a>
+				</li>
+				<li>
+					<a href="unit-6.html">Unit 6</a>
+				</li>
+				<li>
+					<a href="unit-7.html">Unit 7</a>
+				</li>
+				<li>
+					<a href="unit-8.html">Unit 8</a>
+				</li>
+				<li>
+					<a href="unit-9.html">Unit 9</a>
+				</li>
+				<li>
+					<a href="unit-10.html">Unit 10</a>
+				</li>
+				<li>
+					<a href="unit-11.html">Unit 11</a>
+				</li>
+				<li>
+					<a href="unit-12.html">Unit 12</a>
+				</li>
+				<li>
+					<a href="unit-13.html">Unit 13</a>
+				</li>
+				<li>
+					<a href="unit-14.html">Unit 14</a>
+				</li>
+				<li>
+					<a href="unit-15.html">Unit 15</a>
+				</li>
+			</ul>
+            </div>
+            <div div data-role="panel" id="options" data-display="overlay" data-swipe-close="false" data-dismissible="false" data-position="right">
+            	<ul data-role="listview">
+       		<li data-theme="b">
+       			<a href="#">Settings</a>
+       			<a data-rel="close" href="#header" data-icon="delete">Close</a>
+       		</li>
+       		<li>
+       			<a data-role="button" data-icon="forward" data-iconpos="left" onclick="goto()">Goto</a>
+       		</li>
+       		<li>
+       			<a data-role="button" data-icon="action" data-iconpos="left" id="full">Fullscreen</a>
+       		</li>
+       	</ul>
+            </div>
+        </div>
+        <script src="scripts/swipe.js"></script>
+        <script>
+        	//Initiater script to start the Swipe feature
+		window.mySwipe = new Swipe(document.getElementById('mySwipe'),{
+				continuous: true
+			});
+			$(".tabs").tabs();
+			document.onkeydown = checkKey;
+	//Script used to facilitate desktop navigation	
+			function checkKey(e){
+				e = e || window.event;
+				if(e.keyCode == '37'){
+					mySwipe.prev();
+				}
+				else if(e.keyCode == '39'){
+					mySwipe.next();
+				}
+			}
+	//Script used ti enable fullscreen.
+			var full = document.getElementById("full");
+			full.addEventListener("click", function(){
+				var el = document.documentElement , rfs = 
+					el.requestFullScreen
+				 || el.webkitRequestFullScreen
+				 || el.mozRequestFullScreen;
+				rfs.call(el);
+			});
+        </script>
+    </body>
+</html>

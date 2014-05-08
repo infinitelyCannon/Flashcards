@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>Unit 11</title>
+		<meta name="description" content="Study guide for unit 11 vocabulary">
+		<meta name="author" content="infinitelyCannon">
+		<script src="scripts/jquery-1.9.1.min.js"></script>
+		<script src="scripts/defaults.js"></script>
+		<script src="scripts/jquery.mobile-1.3.2.min.js"></script>
+		<script src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
+		<script>
+			function goto(){
+            	var card = prompt("Go to card __");
+            	mySwipe.slide(card - 1, 1000);
+            }
+		</script>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<link rel="stylesheet" href="styles/jquery.mobile-1.3.2.css" />
+		<!-- This css file is for the Swipe.js UI -->
+		<link rel="stylesheet" href="styles/style.css" type="text/css" />
+		<link rel="stylesheet" href="styles/jquery-ui-1.10.3.custom.css" />
+		<style>
+			.swipe{
+				overflow:hidden;
+				visibility:hidden;
+				position:relative;
+			}
+			.swipe-wrap{
+				overflow: hidden;
+				position: relative;
+			}
+			.swipe-wrap > div{
+				float:left;
+				width:100%;
+				position:relative;
+			}
+		</style>
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	</head>
+
+	<body>
+		<div data-role="page" id="page1">
+			<div data-role="header">
+				<a href="#tocPanel" data-role="button" data-icon="bars">Contents</a>
+				<h1>Unit 11</h1>
+				<a href="#" data-role="button" data-icon="forward" onclick="goto()">Goto</a>
+			</div>
+			<div data-role="content">
+				<div id="mySwipe" class="swipe">
+					<div class="swipe-wrap">
+					<div>
+						<div class="tabs">
+                               <ul>
+                				<li><a href="#side-0">Front</a></li>
+            					<li><a href="#side-1">Back</a></li>
+            					<li><a href="#side-2">Synonyms</a></li>
+            				</ul>
+            				<div id="side-0">
+            					<h2>Abrogate</h2>
+            				</div>
+            				<div id="side-1">
+            					<h2>To repeal, cancel, declare null and void.</h2>
+            				</div>
+            				<div id="side-2">
+                                <h2>Annul, revoke</h2>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-3">Front</a></li>
+            						<li><a href="#side-4">Back</a></li>
+            						<li><a href="#side-5">Synonyms</a></li>
+            					</ul>
+            					<div id="side-3">
+            						<h2>Ambient</h2>
+            					</div>
+            					<div id="side-4">
+            						<h2>Completely surrounding, encompassing</h2>
+            					</div>
+            					<div id="side-5">
+            						<h2>None</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-6">Front</a></li>
+            						<li><a href="#side-7">Back</a></li>
+            						<li><a href="#side-8">Synonyms</a></li>
+            					</ul>
+            					<div id="side-6">
+            						<h2>Asperity</h2>
+            					</div>
+            					<div id="side-7">
+            						<h2>Roughness, severity; bitterness or tartness.</h2>
+            					</div>
+            					<div id="side-8">
+            						<h2>Rigor, harshness</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div class="tabs">
+            				<ul>
+            					<li><a href="#side-9">Front</a></li>
+            					<li><a href="#side-10">Back</a></li>
+            					<li><a href="#side-11">Synonyms</a></li>
+            				</ul>
+            				<div id="side-9">
+            					<h2>Burnish</h2>
+            				</div>
+            				<div id="side-10">
+            					<ul class="multi">
+            						<li>
+            							<h2>(v.) To make smooth or glossy by rubing, polish.</h2>
+            						</li>
+            						<li>
+            							<h2>(n.) Gloss, brightness, luster</h2>
+            						</li>
+            					</ul>
+            				</div>
+            				<div id="side-11">
+            					<h2>Shine, buff</h2>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div class="tabs">
+            					<ul>
+            						<li><a href="#side-12">Front</a></li>
+            						<li><a href="#side-13">Back</a></li>
+            						<li><a href="#side-14">Synonyms</a></li>
+            					</ul>
+            				<div id="side-12">
+            					<h2>Cabal</h2>
+            				</div>
+            				<div id="side-13">
+            					<h2>A small group working in secret.</h2>
+            				</div>
+            				<div id="side-14">
+            					<h2>Ring, gang, plot, conspiracy</h2>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-15">Front</a></li>
+            						<li><a href="#side-16">Back</a></li>
+            						<li><a href="#side-17">Synonyms</a></li>
+            					</ul>
+            					<div id="side-15">
+            						<h2>Delectable</h2>
+            					</div>
+            					<div id="side-16">
+            						<ul class="multi">
+            							<li>
+            								<h3>Delightful, highly enjoyable; deliciously flavored, savory.</h3>
+            							</li>
+            							<li>
+            								<h3>An appealing or appetizing food or dish.</h3>
+            							</li>
+            						</ul>
+            					</div>
+            					<div id="side-17">
+            						<h2>Scrumptious</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-18">Front</a></li>
+            						<li><a href="#side-19">Back</a></li>
+            						<li><a href="#side-20">Synonyms</a></li>
+            					</ul>
+            					<div id="side-18">
+            						<h2>Deprecate</h2>
+            					</div>
+            					<div id="side-19">
+            						<h2>To express mild disapproval; to belittle.</h2>
+            					</div>
+            					<div id="side-20">
+            						<h2>Deplore, frown upon</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-21">Front</a></li>
+            						<li><a href="#side-22">Back</a></li>
+            						<li><a href="#side-23">Synonyms</a></li>
+            					</ul>
+            					<div id="side-21">
+            						<h2>Detritus</h2>
+            					</div>
+            					<div id="side-22">
+            						<h3>Loose bits and pieces of material resulting from disintegration or wearing away; fragments that result from any destruction.</h3>
+            					</div>
+            					<div id="side-23">
+            						<h2>Wreckage, ruins, rubble</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-24">Front</a></li>
+            						<li><a href="#side-25">Back</a></li>
+            						<li><a href="#side-26">Synonyms</a></li>
+            					</ul>
+            					<div id="side-24">
+            						<h2>Ebullient</h2>
+            					</div>
+            					<div id="side-25">
+            						<h2>Overflowing with enthusiasm and excitement; boiling, bubbling.</h2>
+            					</div>
+            					<div id="side-26">
+            						<h2>Exhilarated, elated</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-27">Front</a></li>
+            						<li><a href="#side-28">Back</a></li>
+            						<li><a href="#side-29">Synonyms</a></li>
+            					</ul>
+            					<div id="side-27">
+            						<h2>Eclectic</h2>
+            					</div>
+            					<div id="side-28">
+            						<ul class="multi">
+            							<li>
+            								<h2>(adj.) Drawn from different sources.</h2>
+            							</li>
+            							<li>
+            								<h2>(n.) One whose beliiefs are drawn from various sources.</h2>
+            							</li>
+            						</ul>
+            					</div>
+            					<div id="side-29">
+            						<h2>Selective, synthetic, pick-and-choose</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-30">Front</a></li>
+            						<li><a href="#side-31">Back</a></li>
+            						<li><a href="#side-32">Synonyms</a></li>
+            					</ul>
+            					<div id="side-30">
+            						<h2>Flaccid</h2>
+            					</div>
+            					<div id="side-31">
+            						<h2>Limp, not firm; lacking vigor or effectiveness</h2>
+            					</div>
+            					<div id="side-32">
+            						<h2>Soft, flabby</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div class="tabs">
+            				<ul>
+            					<li><a href="#side-33">Front</a></li>
+            					<li><a href="#side-34">Back</a></li>
+            					<li><a href="#side-35">Synonyms</a></li>
+            				</ul>
+            				<div id="side-33">
+            					<h2>Impecunious</h2>
+            				</div>
+            				<div id="side-34">
+            					<h2>Having little or no money</h2>
+            				</div>
+            				<div id="side-35">
+            					<h2>Impoverished, indigent</h2>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-36">Front</a></li>
+            						<li><a href="#side-37">Back</a></li>
+            						<li><a href="#side-38">Synonyms</a></li>
+            					</ul>
+            					<div id="side-36">
+            						<h2>Inexorable</h2>
+            					</div>
+            					<div id="side-37">
+            						<h2>Inflexible, beyond influence; relentless, unyielding</h2>
+            					</div>
+            					<div id="side-38">
+            						<h2>Ineluctable, obdurate</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-39">Front</a></li>
+            						<li><a href="#side-40">Back</a></li>
+            						<li><a href="#side-41">Synonyms</a></li>
+            					</ul>
+            					<div id="side-39">
+            						<h2>Moribund</h2>
+            					</div>
+            					<div id="side-40">
+            						<h2>Dying, on the way out</h2>
+            					</div>
+            					<div id="side-41">
+            						<h2>Obsolescent</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-42">Front</a></li>
+            						<li><a href="#side-43">Back</a></li>
+            						<li><a href="#side-44">Synonyms</a></li>
+            					</ul>
+            					<div id="side-42">
+            						<h2>Necromancer</h2>
+            					</div>
+            					<div id="side-43">
+            						<h3>One who claims to reveal or influence the future through magic, especially communication with the dead; in general, a magician or wizard</h3>
+            					</div>
+            					<div id="side-44">
+            						<h2>Sorcerer, conjurer</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-46">Front</a></li>
+            						<li><a href="#side-47">Back</a></li>
+            						<li><a href="#side-48">Synonyms</a></li>
+            					</ul>
+            					<div id="side-46">
+            						<h2>Onerous</h2>
+            					</div>
+            					<div id="side-47">
+            						<h2>Burdensome; involving hardship or difficulty</h2>
+            					</div>
+            					<div id="side-48">
+            						<h2>Weighty</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-49">Front</a></li>
+            						<li><a href="#side-50">Back</a></li>
+            						<li><a href="#side-51">Synonyms</a></li>
+            					</ul>
+            					<div id="side-49">
+            						<h2>Rife</h2>
+            					</div>
+            					<div id="side-50">
+            						<h3>Common, prevalent, widespread, happening often; full abounding; plentiful, abundant, replete</h3>
+            					</div>
+            					<div id="side-51">
+            						<h2>None</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-52">Front</a></li>
+            						<li><a href="#side-53">Back</a></li>
+            						<li><a href="#side-54">Synonyms</a></li>
+            					</ul>
+            					<div id="side-52">
+            						<h2>Rudiments</h2>
+            					</div>
+            					<div id="side-53">
+            						<h2>The parts of any subject or discipline that are learned first; the earliest stages of anything</h2>
+            					</div>
+            					<div id="side-54">
+            						<h2>Basics, fundamentals</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-55">Front</a></li>
+            						<li><a href="#side-56">Back</a></li>
+            						<li><a href="#side-57">Synonyms</a></li>
+            					</ul>
+            					<div id="side-55">
+            						<h2>Sequester</h2>
+            					</div>
+            					<div id="side-56">
+            						<h3>To set apart, separate for a special purpose; to take possesion of and hold in custody</h3>
+            					</div>
+            					<div id="side-57">
+            						<h2>Segregate, isolate, closet</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<div>
+            			<div>
+            				<div class="tabs">
+            					<ul>
+            						<li><a href="#side-58">Front</a></li>
+            						<li><a href="#side-59">Back</a></li>
+            						<li><a href="#side-60">Synonyms</a></li>
+            					</ul>
+            					<div id="side-58">
+            						<h2>Winnow</h2>
+            					</div>
+            					<div id="side-59">
+            						<h3>To get rid of something unwanted, delete; to sift through to obtain what is desirable; to remove the chaff from the wheat by blowing air on it; to blow on, fan</h3>
+            					</div>
+            					<div id="side-60">
+            						<h2>Sift, strain, filter, sort</h2>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+				</div>
+			</div>
+		</div>
+		<div data-role="panel" id="tocPanel" data-display="push" data-swipe-close="false" data-dismissible="false">
+            	<ul data-role="listview" style="margin-bottom:5px;">
+					<li>
+						<a href="Library.html">Vocabulary: Unit 11</a>
+						<a href="#tocPanel" data-rel="close" data-icon="delete">Close</a>
+					</li>
+				</ul>
+			<div id="tocList" data-role="collapsible-set" data-inset="false" data-collapsed-icon="arrow" data-iconpos="right">
+			<div data-role="collapsible" data-theme="b">
+				<h3>Unit 1</h3>
+				<ul data-role="listview">
+					<li>
+						<a href="unit-1.html">Definitions</a>
+					</li>
+				</ul>
+			</div>
+			<div data-role="collapsible" data-theme="b">
+				<h3>Unit 2</h3>
+				<ul data-role="listview">
+					<li>
+						<a href="unit-2.html">Definitions</a>
+					</li>
+				</ul>
+			</div>
+			<div data-role="collapsible" data-theme="b">
+				<h3>Unit 3</h3>
+				<ul data-role="listview">
+					<li>
+						<a href="unit-3.html">Definitions</a>
+					</li>
+				</ul>
+			</div>
+			<div data-role="collapsible" data-theme="b">
+				<h3>Unit 4</h3>
+				<ul data-role="listview">
+					<li>
+						<a href="unit-4.html">Definitions</a>
+					</li>
+				</ul>
+			</div>
+			<div data-role="collapsible" data-theme="b">
+				<h3>Unit 5</h3>
+				<ul data-role="listview">
+					<li><a href="unit-5.html">Definitions</a></li>
+				</ul>
+			</div>
+		  <div data-role="collapsible" data-theme="b">
+			<h3>Unit 6</h3>
+			<ul data-role="listview">
+				<li><a href="unit-6.html">Definitions</a></li>
+			</ul>
+		  </div>
+		  <div data-role="collapsible" data-theme="b">
+		  	<h3>Unit 7</h3>
+		  	<ul data-role="listview">
+		  		<li><a href="unit-7.html">Definitions</a></li>
+		  	</ul>
+		  </div>
+		  <div data-role="collapsible" data-theme="b">
+		  	<h3>Unit 8</h3>
+		  	<ul data-role="listview">
+		  		<li><a href="unit-8.html">Definitions</a></li>
+		  	</ul>
+		  </div>
+		  <div data-role="collapsible" data-theme="b">
+		  	<h3>Unit 9</h3>
+		  	<ul data-role="listview">
+		  		<li><a href="unit-9.html">Definitions</a></li>
+		  	</ul>
+		  </div>
+		  <div data-role="collapsible" data-theme="b">
+		  	<h3>Unit 10</h3>
+		  	<ul data-role="listview">
+		  		<li><a href="unit-10.html">Definitions</a></li>
+		  	</ul>
+		  </div>
+		  <div data-role="collapsible" data-theme="b">
+		  	<h3>Unit 11</h3>
+		  	<ul data-role="listview">
+		  		<li><a class="ui-disabled">Definitions</a></li>
+		  	</ul>
+		  </div>
+		  <div data-role="collapsible" data-theme="b">
+		  	<h3>Unit 12</h3>
+		  	<ul data-role="listview">
+		  		<li><a href="unit-12.html">Definitions</a></li>
+		  	</ul>
+		  </div>
+		</div>
+       </div>
+	</div>
+	<script src="scripts/swipe.js"></script>
+	<script>
+		window.mySwipe = new Swipe(document.getElementById('mySwipe'),{
+				continuous: true
+			});
+			$(".tabs").tabs();
+			document.onkeydown = checkKey;
+			
+			function checkKey(e){
+				e = e || window.event;
+				if(e.keyCode == '37'){
+					mySwipe.prev();
+				}
+				else if(e.keyCode == '39'){
+					mySwipe.next();
+				}
+			}
+	</script>
+	<script src="scripts/desktop.js"></script>
+	</body>
+</html>

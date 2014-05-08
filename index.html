@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Flashcards App | Main Directory</title>
+		<meta name="description" content="" />
+		<meta name="author" content="infinitelyCannon" />
+		<script src="scripts/jquery-1.10.2.min.js"></script>
+    	<script src="scripts/defaults.js"></script>
+		<script src="scripts/jquery.mobile-1.4.1.min.js"></script>
+		<script src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<link rel="stylesheet" href="styles/jquery.mobile-1.4.1.css" />
+		<style>
+			#newCard-popup{
+				width:70%;
+			}
+		</style>
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="styles/jquery-ui-1.10.3.custom.css" />
+	</head>
+
+	<body>
+		<div data-role="page" id="page1">
+			<div data-role="header" id="header">
+				<a href="#newCard" data-transition="pop" data-rel="popup" data-role="button" data-icon="plus" data-position-to="window">New Card</a>
+				<h1>Main Directory</h1>
+				<a data-role="button" data-icon="plus" onclick="alert('This Feature is under construction \n~IC')">New List</a>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview">
+					<li>
+						<a href="#tocPanel">
+							<img src="images/level_g.jpg" />
+							Vocabulary Workshop: Level G
+							<p>Mrs.Nesselrode 5<sup>th</sup> Period</p>
+						</a>
+					</li>
+				</ul>
+				<div data-overlay-theme="a" data-role="popup" id="newCard" data-dismissible="false">
+					<div data-role="header">
+						<h3>New Card</h3>
+						<a href="#" data-rel="back" data-iconpos="notext" data-role="button" data-icon="delete">Close</a>
+					</div>
+					<div data-role="content">
+						<form>
+							Type: <select name="type" id="type">
+								    <option value="vocab">Vocabulary Word</option>
+								    <option value="other">Other</option>
+							      </select>
+							Front: <input type="text" name="front" /><br />
+							Back: <input type="text" name="back" />
+							Synonyms: <input type="text" name="syn" />
+						</form>
+					</div>
+				</div>
+				<div data-role="panel" id="tocPanel" data-display="overlay" data-swipe-close="false" data-dismissible="false">
+					<ul data-role="listview">
+					<li data-theme="b">
+						<a href="Library.html">Vocabulary Workshop</a>
+						<a href="#header" data-rel="close" data-icon="delete">Close</a>
+					</li>
+					<li>
+						<a href="unit-1.html">Unit 1</a>
+					</li>
+					<li>
+						<a href="unit-2.html">Unit 2</a>
+					</li>
+					<li>
+						<a href="unit-3.html">Unit 3</a>
+					</li>
+					<li>
+						<a href="unit-4.html">Unit 4</a>
+					</li>
+					<li>
+						<a href="unit-5.html">Unit 5</a>
+					</li>
+					<li>
+						<a href="unit-6.html">Unit 6</a>
+					</li>
+					<li>
+						<a href="unit-7.html">Unit 7</a>
+					</li>
+					<li>
+						<a href="unit-8.html">Unit 8</a>
+					</li>
+					<li>
+						<a href="unit-9.html">Unit 9</a>
+					</li>
+					<li>
+						<a href="unit-10.html">Unit 10</a>
+					</li>
+					<li>
+						<a href="unit-11.html">Unit 11</a>
+					</li>
+					<li>
+						<a href="unit-12.html">Unit 12</a>
+					</li>
+					<li>
+						<a href="unit-13.html">Unit 13</a>
+					</li>
+					<li>
+						<a href="unit-14.html">Unit 14</a>
+					</li>
+					<li>
+						<a href="unit-15.html">Unit 15</a>
+					</li>
+				</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

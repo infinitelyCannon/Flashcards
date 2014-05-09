@@ -33,7 +33,7 @@
 			<div data-role="header" id="header">
 				<a href="#newCard" data-transition="pop" data-rel="popup" data-role="button" data-icon="plus" data-position-to="window">New Card</a>
 				<h1>Main Directory</h1>
-				<a data-role="button" data-icon="plus" onclick="alert('This Feature is under construction \n~IC')">New List</a>
+				<a data-role="button" data-icon="info" href="#note" data-transition="slidedown" data-rel="popup" data-position-to="window">Note</a>
 			</div>
 			<div data-role="content">
 				<ul data-role="listview">
@@ -60,6 +60,26 @@
 							Back: <input type="text" name="back" />
 							Synonyms: <input type="text" name="syn" />
 						</form>
+					</div>
+				</div>
+				<div data-overlay-theme="a" data-role="popup" id="note" data-dismissible="false">
+					<div data-role="header">
+						<h3>Note: From IC</h3>
+						<a href="#" data-rel="back" data-iconpos="notext" data-role="button" data-icon="delete">Close</a>
+					</div>
+					<div data-role="content">
+						<p>Several changes to be noted:</p>
+						<ol>
+							<li>This project has been moved to <a href="https://github.com/infinitelyCannon/Flashcards" target="_blank" data-role="none">GitHub</a> and all changes shall be commited to the repository.</li>
+							<li>The new card feature will have to be moved to the settings within each set of cards.</li>
+							<li>The new list feature will have to be added over the summer to facilitate the addition of more cards.</li>
+							<li>The UI of the app needs to modified to look more like a mobile application.</li>
+							<li>A quiz mode needs to be added to help users study more efficiently.</li>
+							<li>The fullscreen function needs to edited to support more mobile browsers.</li>
+							<li>Use the custom css jQuery file(s) to allow users to choose from multiple themes made in the Theme Engine.</li>
+							<li>Import the JavaScript APIs necessary to allow the application to be stored and used offline.</li>
+							<li>The application will need be modified to allow developers to easily modify and work with the code.</li>
+						</ol>
 					</div>
 				</div>
 				<div data-role="panel" id="tocPanel" data-display="overlay" data-swipe-close="false" data-dismissible="false">

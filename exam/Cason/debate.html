@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>Second Semester Debate Questions</title>
+		<meta name="description" content="" />
+		<meta name="author" content="infinitelyCannon" />
+		<script src="../scripts/jquery-1.10.2.min.js"></script>
+		<script src="../scripts/defaults.js"></script>
+		<script src="../scripts/jquery.mobile-1.4.1.min.js"></script>
+		<script>
+			function goto(){
+				$("#options").panel("close");
+				var card = prompt("Goto Card?");
+				if(card <= mySwipe.getNumSlides()){
+					mySwipe.slide(card - 1, 1000);
+				}
+				else{
+					$("#options").panel("close");
+					alert("Invalid entry.\n(Not enough cards)");
+				}
+			}
+		</script>
+
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../styles/jquery.mobile.structure-1.4.2.css" type="text/css" />
+		<link rel="stylesheet" href="../styles/main-themes.css" type="text/css" />
+		<link rel="stylesheet" href="../styles/jquery.mobile.icons.min.css" type="text/css" />
+		<link rel="stylesheet" href="../styles/style.css" />
+
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+	</head>
+
+	<body>
+		<div data-role="page" id="page1">
+			<div data-role="header" id="header">
+				<a href="#tocPanel" data-role="button" data-icon="bars">Contents</a>
+				<h1>Debate Questions</h1>
+				<a href="#options" data-role="button" data-icon="gear">Settings</a>
+			</div>
+			<div data-role="content">
+				<div id="mySwipe" class="swipe">
+					<div class="swipe-wrap">
+						<div>
+							<div class="card">
+								<h4 class="title">1. What phrase best defines the quality of American’s lives in the period 1945-1968?:  Improved dramatically; remained relatively unchanged; dropped precipitously.</h4><hr />
+								<div data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-iconpos="right">
+									<div data-role="collapsible" data-collapsed="true" data-theme="a">
+										<h3>Improved Dramatically</h3>
+										<div data-role="collapsible" style="text-align: left;">
+											<h3>Arguments</h3>
+											<p>The Voting Rights Act of 1965 would improve the rights for racial minorities by ensuring the political rights granted by the 15th Amendment. This would elimate literacy tests and cause a jump in the number of blacks registered to vote.</p>
+											<p>The Loving vs. Virginia case would expand political rights allowing interracial couples to marry.</p>
+										</div>
+										<div data-role="collapsible" style="text-align: left;">
+											<h3>Counter Argumetns</h3>
+											<p>The Civil Rights Act of 1964 was intended to help blacks, but would fail to improve black voting rights.</p>
+											<p>With the rise of McCarthy</p>
+										</div>
+									</div>
+									<div data-role="collapsible" data-theme="a">
+										<h3>Remained Relatively Unchanged</h3>
+									</div>
+									<div data-role="collapsible" data-theme="a">
+										<h3>Dropped Precipitously</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="card">
+								<h4 class="title">2. In what decade did Manifest Decade have its greatest impact? 1840s or 1850s?</h4><hr />
+								<div data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-iconpos="right">
+									<div data-role="collapsible" data-collapsed="true">
+										<h3>1840s</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>1850s</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="card">
+								<h4 class="title">3. What battle was the turning point of the Civil War: Antietam, Gettysburg, or Vicksburg</h4><hr />
+								<div data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-iconpos="right">
+									<div data-role="collapsible" data-collapsed="true">
+										<h3>Antietam</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Gettysburg</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Vicksburg</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="card">
+								<h4 class="title">4. What event did the most for African American Civil Rights in the twentieth century: WWI; WWII; the Cold War; the death of JFK</h4><hr />
+								<div data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-iconpos="right">
+									<div data-role="collapsible" data-collapsed="true">
+										<h3>WWI</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>WWII</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Cold War</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>JFK's Death</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="card">
+								<h4 class="title">5. If you were President between the periods 1898 to 1919, how would you have led the United Stated?  Would we describe your leadership as ‘gradual and reluctant’ or a ‘hurried and eager’?</h4><hr />
+								<div data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-iconpos="right">
+									<div data-role="collapsible" data-collapsed="true">
+										<h3>Gradual &amp; Relectant</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Hurried &amp; Eager</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="card">
+								<h4 class="title">6. Which President did most to shape the social history of the United States: James Polk; Ulysses Grant; Woodrow Wilson; Franklin Roosevelt; Lyndon B. Johnson</h4><hr />
+								<div data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-iconpos="right">
+									<div data-role="collapsible" data-collapsed="true">
+										<h3>James Polk</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Ulysses Grant</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Woodrow Wilson</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Franklin Roosevelt</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Lyndon B. Johnson</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<div class="card">
+								<h4 class="title">7. What technology had the greatest impact in the twentieth century to 1968: Television; Air Conditioner; Automobile; the Atomic Bomb</h4><hr />
+								<div data-role="collapsible-set" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" data-iconpos="right">
+									<div data-role="collapsible" data-collapsed="true">
+										<h3>Televison</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Air Conditioner</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Automobile</h3>
+									</div>
+									<div data-role="collapsible">
+										<h3>Atomic Bomb</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div data-role="panel" id="tocPanel" data-display="push" data-swipe-close="false" data-dismissible="false">
+				<ul data-role="listview">
+					<li data-theme="b">
+						<a href="#">Debate &amp; Exam Questions</a>
+						<a href="#header" data-rel="close" data-icon="delete">Close</a>
+					</li>
+					<li>
+						<a class="ui-disabled">Debate Questions</a>
+					</li>
+					<li>
+						<a href="exam.html">Exam Questions</a>
+					</li>
+				</ul>
+			</div>
+			<div data-role="panel" id="options" data-display="overlay" data-swipe-close="false" data-dismissible="false" data-position="right">
+				<ul data-role="listview">
+					<li data-theme="b">
+						<a href="#">Settings</a>
+						<a data-rel="close" href="#header" data-icon="delete">Close</a>
+					</li>
+					<li>
+						<a data-role="button" data-icon="forward" data-iconpos="left" onclick="goto()">Goto</a>
+					</li>
+					<li>
+						<a data-role="button" data-icon="action" data-iconpos="left" id="full">Fullscreen</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="../scripts/swipe.js"></script>
+		<script>
+			window.mySwipe = new Swipe(document.getElementById('mySwipe'),{
+				continuous: true
+			});
+			$(".tabs").tabs();
+			document.onkeydown = checkKey;
+			function checkKey(e){
+				e = e || window.event;
+				if(e.keyCode == '37'){
+					mySwipe.prev();
+				}
+				else if(e.keyCode == '39'){
+					mySwipe.next();
+				}
+			}
+			
+			var full = document.getElementById("full");
+			full.addEventListener("click", function(){
+				var el = document.documentElement , rfs = 
+					el.requestFullScreen
+				 || el.webkitRequestFullScreen
+				 || el.mozRequestFullScreen;
+				rfs.call(el);
+			});
+		</script>
+	</body>
+</html>

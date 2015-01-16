@@ -1,141 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 
 		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
 		Remove this if you use the .htaccess -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>Flashcards App | Main Directory</title>
-		<meta name="description" content="" />
-		<meta name="author" content="infinitelyCannon" />
-		<script src="scripts/jquery-1.10.2.min.js"></script>
-    	<script src="scripts/defaults.js"></script>
-		<script src="scripts/jquery.mobile-1.4.1.min.js"></script>
-		<script src="scripts/jquery-ui-1.10.3.custom.min.js"></script>
+		<title>index</title>
+		<meta name="description" content="">
+		<meta name="author" content="Dakarai">
 
-		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
-		<link rel="stylesheet" href="styles/jquery.mobile-1.4.1.css" />
-		<style>
-			#newCard-popup{
-				width:70%;
-			}
-		</style>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
 
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-		<link rel="shortcut icon" href="/favicon.ico" />
-		<link rel="stylesheet" href="styles/jquery-ui-1.10.3.custom.css" />
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	</head>
 
 	<body>
-		<div data-role="page" id="page1">
-			<div data-role="header" id="header">
-				<a href="#newCard" data-transition="pop" data-rel="popup" data-role="button" data-icon="plus" data-position-to="window">New Card</a>
-				<h1>Main Directory</h1>
-				<a data-role="button" data-icon="info" href="#note" data-transition="slidedown" data-rel="popup" data-position-to="window">Note</a>
+		<div>
+			<header>
+				<h1>index</h1>
+			</header>
+			<nav>
+				<p>
+					<a href="/">Home</a>
+				</p>
+				<p>
+					<a href="/contact">Contact</a>
+				</p>
+			</nav>
+
+			<div>
+
 			</div>
-			<div data-role="content">
-				<ul data-role="listview">
-					<li>
-						<a href="#tocPanel">
-							<img src="images/level_g.jpg" />
-							Vocabulary Workshop: Level G
-							<p>Mrs.Nesselrode 5<sup>th</sup> Period</p>
-						</a>
-					</li>
-				</ul>
-				<div data-overlay-theme="a" data-role="popup" id="newCard" data-dismissible="false">
-					<div data-role="header">
-						<h3>New Card</h3>
-						<a href="#" data-rel="back" data-iconpos="notext" data-role="button" data-icon="delete">Close</a>
-					</div>
-					<div data-role="content">
-						<form>
-							Type: <select name="type" id="type">
-								    <option value="vocab">Vocabulary Word</option>
-								    <option value="other">Other</option>
-							      </select>
-							Front: <input type="text" name="front" /><br />
-							Back: <input type="text" name="back" />
-							Synonyms: <input type="text" name="syn" />
-						</form>
-					</div>
-				</div>
-				<div data-overlay-theme="a" data-role="popup" id="note" data-dismissible="false">
-					<div data-role="header">
-						<h3>Note: From IC</h3>
-						<a href="#" data-rel="back" data-iconpos="notext" data-role="button" data-icon="delete">Close</a>
-					</div>
-					<div data-role="content">
-						<p>Several changes to be noted:</p>
-						<ol>
-							<li>This project has been moved to <a href="https://github.com/infinitelyCannon/Flashcards" target="_blank" data-role="none">GitHub</a> and all changes shall be commited to the repository.</li>
-							<li>The new card feature will have to be moved to the settings within each set of cards.</li>
-							<li>The new list feature will have to be added over the summer to facilitate the addition of more cards.</li>
-							<li>The UI of the app needs to modified to look more like a mobile application.</li>
-							<li>A quiz mode needs to be added to help users study more efficiently.</li>
-							<li>The fullscreen function needs to edited to support more mobile browsers.</li>
-							<li>Use the custom css jQuery file(s) to allow users to choose from multiple themes made in the Theme Engine.</li>
-							<li>Import the JavaScript APIs necessary to allow the application to be stored and used offline.</li>
-							<li>The application will need be modified to allow developers to easily modify and work with the code.</li>
-						</ol>
-					</div>
-				</div>
-				<div data-role="panel" id="tocPanel" data-display="overlay" data-swipe-close="false" data-dismissible="false">
-					<ul data-role="listview">
-					<li data-theme="b">
-						<a href="Library.html">Vocabulary Workshop</a>
-						<a href="#header" data-rel="close" data-icon="delete">Close</a>
-					</li>
-					<li>
-						<a href="unit-1.html">Unit 1</a>
-					</li>
-					<li>
-						<a href="unit-2.html">Unit 2</a>
-					</li>
-					<li>
-						<a href="unit-3.html">Unit 3</a>
-					</li>
-					<li>
-						<a href="unit-4.html">Unit 4</a>
-					</li>
-					<li>
-						<a href="unit-5.html">Unit 5</a>
-					</li>
-					<li>
-						<a href="unit-6.html">Unit 6</a>
-					</li>
-					<li>
-						<a href="unit-7.html">Unit 7</a>
-					</li>
-					<li>
-						<a href="unit-8.html">Unit 8</a>
-					</li>
-					<li>
-						<a href="unit-9.html">Unit 9</a>
-					</li>
-					<li>
-						<a href="unit-10.html">Unit 10</a>
-					</li>
-					<li>
-						<a href="unit-11.html">Unit 11</a>
-					</li>
-					<li>
-						<a href="unit-12.html">Unit 12</a>
-					</li>
-					<li>
-						<a href="unit-13.html">Unit 13</a>
-					</li>
-					<li>
-						<a href="unit-14.html">Unit 14</a>
-					</li>
-					<li>
-						<a href="unit-15.html">Unit 15</a>
-					</li>
-				</ul>
-				</div>
-			</div>
+
+			<footer>
+				<p>
+					&copy; Copyright  by Dakarai
+				</p>
+			</footer>
 		</div>
 	</body>
 </html>

@@ -7,11 +7,18 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>index</title>
+		<title>Flashcards | Main Directory</title>
 		<meta name="description" content="">
-		<meta name="author" content="Dakarai">
+		<meta name="author" content="infinitelyCannon">
+		<script src="js/lib/ratchet.min.js"></script>
+		<script src="js/lib/TweenLite.min.js"></script>
+		<script src="js/lib/CSSPlugin.min.js"></script>
+		<script src="js/lib/TimelineLite.min.js"></script>
 
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/main.css" type="text/css" />
+		<link rel="stylesheet" href="css/ratchet.css" type="text/css" />
+		<link rel="stylesheet" href="css/ratchet-theme-android.css" type="text/css" />
 
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
@@ -19,28 +26,31 @@
 	</head>
 
 	<body>
-		<div>
-			<header>
-				<h1>index</h1>
-			</header>
-			<nav>
-				<p>
-					<a href="/">Home</a>
-				</p>
-				<p>
-					<a href="/contact">Contact</a>
-				</p>
-			</nav>
-
-			<div>
-
+		<header class="bar bar-nav">
+			<a class="icon icon-bars pull-left"></a>
+			<h1 class="title">Flashcards</h1>
+		</header>
+		<!-- Navigation Panel (Be sure to move this element to a template) -->
+		<div id="panel">
+			<div id="panel-inner">
+				<ul>
+					
+				</ul>
 			</div>
-
-			<footer>
-				<p>
-					&copy; Copyright  by Dakarai
-				</p>
-			</footer>
 		</div>
+		<div id="overlay"></div>
+		<div class="content" style="padding-top: 101px">
+		<!-- Secondary bar -->
+			<nav id="navBar" class="bar bar-tab bar-header-secondary">
+				<span class="tab-item active">Main</span>
+			</nav>
+			<p>Welcome. Select a set from the navigation drawer to get started.</p>
+		</div>
+		<script src="js/lib/jquery-1.11.2.min.js"></script>
+		<script src="js/lib/underscore-min.js"></script>
+		<script src="js/lib/backbone-min.js"></script>
+		<script src="js/lib/backbone.localStorage-min.js"></script>
+		<script src="js/views/index.js"></script>
+		<script src="js/index.js"></script>
 	</body>
 </html>

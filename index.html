@@ -29,33 +29,108 @@
 		<link rel="import" href="bower_components/iron-icons/social-icons.html" />
 		<link rel="import" href="bower_components/iron-icons/hardware-icons.html" />
 		<link rel="import" href="bower_components/paper-card/paper-card.html" />
+		<link rel="import" href="bower_components/paper-fab/paper-fab.html" />
+		<link rel="import" href="bower_components/paper-dialog/paper-dialog.html" />
+		<link rel="import" href="bower_components/paper-input/paper-input.html" />
+		<link rel="import" href="bower_components/neon-animation/animations/scale-up-animation.html" />
+		<link rel="import" href="bower_components/neon-animation/animations/scale-down-animation.html" />
 		
 		<!-- Materialize CSS custom build from SASS -->
 		<link rel="stylesheet" href="css/build.css" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+		<style>
+		/* Webkit overrite to remove default visial highlight */
+		    paper-icon-button, paper-fab, paper-button{
+		        -webkit-tap-highlight-color: rgba(0,0,0,0.0);
+		    }
+		
+		    paper-item-body{
+		        width:100%;
+		    }
+		    paper-item{
+		        border-bottom: 1px solid #CCCCCC;
+		    }
+		    div[secondary]{
+		        color: #737373;
+		        -webkit-font-smoothing:antialiased;
+		        font-size:14px;
+		        font-weight: 400;
+		        line-height: 20px;
+		        white-space:nowrap;
+		        overflow:hidden;
+		        text-overflow:ellipsis;
+		    }
+		    paper-fab{
+		        position: absolute;
+		        bottom: 10px;
+		        right: 10px;
+		    }
+		</style>
 
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	</head>
 
-	<body>
-		<paper-drawer-panel>
-			<!-- Navigation Drawer -->
-			<paper-header-panel mode="seamed" drawer>
-				<p>Navigation Drawer</p>
-			</paper-header-panel>
-			
-			<!-- Header -->
-			<paper-header-panel main id="header" mode="waterfall">
-				<paper-toolbar>
-					<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-					<h1 class="title">Flashcards</h1>
-				</paper-toolbar>
-			</paper-header-panel>
-		</paper-drawer-panel>
+	<body class="fullbleed layout vertical">
+		<!-- Header -->
+		<paper-header-panel id="header" mode="waterfall">
+			<paper-toolbar>
+			<paper-icon-button icon="home" disabled="true"></paper-icon-button>
+				<h1 class="title">Flashcards</h1>
+			</paper-toolbar>
+			<div>
+			    <p>Model display prototypes: (Category List)</p>
+			    <paper-item style="border-top: 1px solid #CCCCCC;">
+                     <paper-item-body two-line>
+                         <div>Category Name</div>
+                         <div secondary># of models</div>
+                     </paper-item-body>
+                     <paper-icon-button icon="create"></paper-icon-button>
+                     <paper-icon-button icon="delete"></paper-icon-button>
+                </paper-item>
+                <paper-item>
+                     <paper-item-body two-line>
+                         <div>Category Name</div>
+                         <div secondary># of models</div>
+                     </paper-item-body>
+                     <paper-icon-button icon="create"></paper-icon-button>
+                     <paper-icon-button icon="delete"></paper-icon-button>
+                </paper-item>
+                <paper-item>
+                     <paper-item-body two-line>
+                         <div>Category Name</div>
+                         <div secondary># of models</div>
+                     </paper-item-body>
+                     <paper-icon-button icon="create"></paper-icon-button>
+                     <paper-icon-button icon="delete"></paper-icon-button>
+                </paper-item>
+                <paper-fab id="fab" icon="add"></paper-fab>
+			</div>
+		</paper-header-panel>
+		<paper-dialog with-Backdrop id="dialog" entry-animation="scale-up-animation" exit-animation="scale-down-animation">
+            <h2>Create a Category</h2>
+            <div>
+                <paper-input label="Name"></paper-input>
+            </div>
+            <div class="buttons">
+                <paper-button dialog-dismiss>Cancel</paper-button>
+                <paper-button dialog-confirm>Create</paper-button>
+            </div>
+        </paper-dialog>
 		<script src="js/lib/jquery-1.11.3.min.js"></script>
 		<script src="js/lib/underscore-min.js"></script>
 		<script src="js/lib/backbone-min.js"></script>
+		<script>
+		    // Dummy script to test the interface
+		    var fab = document.getElementById("fab");
+		    var popup = document.getElementById("dialog");
+		    
+		    fab.addEventListener("click", dialog);
+		    
+		    function dialog(){
+		        popup.open();
+		    }
+		</script>
 	</body>
 </html>

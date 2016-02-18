@@ -1,3 +1,7 @@
 *.project
 
 bower_components
+
+js/*.map
+
+js/lib/*.map

@@ -33,6 +33,8 @@
         <link rel="import" href="bower_components/paper-dialog/paper-dialog.html" />
         <link rel="import" href="bower_components/paper-input/paper-input.html" />
         <link rel="import" href="bower_components/iron-pages/iron-pages.html" />
+        <link rel="import" href="bower_components/paper-tabs/paper-tabs.html" />
+        <link rel="import" href="bower_components/paper-listbox/paper-listbox.html" />
         <link rel="import" href="bower_components/neon-animation/neon-animated-pages.html" />
         <link rel="import" href="bower_components/neon-animation/animations/scale-up-animation.html" />
         <link rel="import" href="bower_components/neon-animation/animations/scale-down-animation.html" />
@@ -43,6 +45,7 @@
         <!-- Materialize CSS custom build from SASS -->
         <link rel="stylesheet" href="css/build.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" href="css/swiper.min.css" />
         <style>
 			/* Webkit overrite to remove default visial highlight */
 			paper-icon-button, paper-fab, paper-button {
@@ -54,6 +57,9 @@
 			}
 			paper-item {
 				border-bottom: 1px solid #CCCCCC;
+			}
+			paper-item:first-child{
+			    border-top: 1px solid #CCCCCC;
 			}
 			div[secondary] {
 				color: #737373;
@@ -70,24 +76,67 @@
 				bottom: 10px;
 				right: 10px;
 			}
-			
-			#cards{
-			    width: 98%;
-			    height: 200px;
-			    font-size: 50px;
-			    text-align: center;
-			    margin: 0 2%;
-			}
-			#cards div{
+			#cover{
+			    position:absolute;
+			    top: 0;
+			    left: 0;
 			    width: 100%;
 			    height: 100%;
-			    padding: 80px 0;
+			    z-index: 200;
+			    background-color:#abc;
+			    transform: scale(0,0);
 			}
-			.below{
-			    position: fixed;
-			    bottom:0;
+			.swiper-container{
+			    width: 96%;
+			    height: 300px;
+			    margin: 20px auto;
+			    
 			}
-			
+			.swiper-slide{
+			    text-align:center;
+			    font-size: 18px;
+			    background: #F5F5F5;
+			    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+			    
+			    /* Center slide text vertically 
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+                */
+			}
+			paper-tabs{
+			    background-color: #536DFE;
+			    color: #FFFFFF;
+			}
+			.swiper-slide > iron-pages{
+			    /* Center slide test vertically */
+			    height: 252px;
+			    display: -webkit-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+			}
+			#errorToast{
+			    --paper-toast-background-color: red;
+			    --paper-toast-color: #ffffff;
+			}
         </style>
 
         <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
@@ -98,19 +147,19 @@
     <body class="fullbleed layout vertical">
         <!-- Header -->
         <paper-header-panel id="header" mode="waterfall">
-            <paper-toolbar>
-                <paper-icon-button icon="home" id="home"></paper-icon-button>
-                <h1 class="title">Flashcards</h1>
+            <paper-toolbar id="toolbar">
+                <paper-icon-button disabled="true" href="#home" icon="home" id="home"></paper-icon-button>
+                <h1 class="title flex" style="text-align: left;">Flashcards</h1>
+                <paper-icon-button id="help" icon="help-outline"></paper-icon-button>
             </paper-toolbar>
             
+           
             <!-- Main Content: Single page application -->
             <neon-animated-pages id="pages" class="flex" selected="0" entry-animation="slide-from-right-animation" exit-animation="slide-left-animation">
+                    <!--<div id="cover"></div>-->
                 <!-- Page 1.1: Main Menu -->
-                <neon-animatable>
-                    <p>
-                        Model display prototypes: (Category List)
-                    </p>
-                    <paper-item style="border-top: 1px solid #CCCCCC;">
+                <neon-animatable id="page1">
+                    <paper-item>
                         <paper-item-body two-line>
                             <div>
                                 Category Name
@@ -119,8 +168,8 @@
                                 # of models
                             </div>
                         </paper-item-body>
-                        <paper-icon-button icon="create"></paper-icon-button>
-                        <paper-icon-button class="deleteBtn" icon="delete"></paper-icon-button>
+                        <paper-icon-button class="openBtn" icon="chevron-right"></paper-icon-button>
+                        <paper-icon-button class="editBtn" icon="more-vert"></paper-icon-button>
                     </paper-item>
                     <paper-item>
                         <paper-item-body two-line>
@@ -151,6 +200,7 @@
                         <paper-input label="Side 1"></paper-input>
                         <paper-input label="Side 2"></paper-input>
                         <div class="card-actions">
+                            <paper-button>Save</paper-button>
                             <paper-button>Delete</paper-button>
                         </div>
                     </paper-card>
@@ -158,54 +208,118 @@
                         <paper-item-body two-line>
                             <paper-input label="Side 1"></paper-input>
                             <paper-input label="Side 2"></paper-input>
+                            <paper-button>Save</paper-button>
                             <paper-button>Delete</paper-button>
                         </paper-item-body>
                     </paper-item>
-                    
+                    <paper-item>
+                        <paper-item-body two-line>
+                            <paper-input label="Side 1"></paper-input>
+                            <paper-input label="Side 2"></paper-input>
+                            <paper-button>Save</paper-button>
+                            <paper-button>Delete</paper-button>
+                        </paper-item-body>
+                    </paper-item>
+                    <paper-item>
+                        <paper-item-body two-line>
+                            <paper-input label="Side 1"></paper-input>
+                            <paper-input label="Side 2"></paper-input>
+                            <paper-button>Save</paper-button>
+                            <paper-button>Delete</paper-button>
+                        </paper-item-body>
+                    </paper-item>
                     <!-- Floating Action Button -->
-                    <paper-fab id="fab" icon="add"></paper-fab>
+                    <paper-fab id="CatFab" icon="create"></paper-fab>
                 </neon-animatable>
                 
                 <!-- Page 1.2: Category Editor -->
-                <neon-animatable>
-                    <p>Hello World!</p>
+                <neon-animatable id="page2">
+                    <paper-fab id="ModelFab" icon="add"></paper-fab>
                 </neon-animatable>
                 
-                <!-- Page 1.3: Flashcard mode -->
-                <neon-animatable>
-                   <iron-pages id="cards" selected="0">
-                       <div>
-                           One
-                       </div>
-                       <div>
-                           Two
-                       </div>
-                       <div>
-                           Three
-                       </div>
-                   </iron-pages>
-                   <paper-toolbar class="layout horizontal layout-self-end">
-                       <paper-icon-button class="horizontal layout start-justified" icon="chevron-left"></paper-icon-button>
-                       <paper-icon-button class="horizontal layout end-justified" icon="chevron-right"></paper-icon-button>
-                   </paper-toolbar>
+                <!-- Page 1.3: Flashcards Page -->
+                <neon-animatable id="page3">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <paper-tabs noink>
+                                    <paper-tab>Side 1</paper-tab>
+                                    <paper-tab>Side 2</paper-tab>
+                                </paper-tabs>
+                                <iron-pages selected="0">
+                                    <div>Hello</div>
+                                    <div>World!</div>
+                                </iron-pages>
+                            </div>
+                            <div class="swiper-slide">Slide 2</div>
+                            <div class="swiper-slide">Slide 3</div>
+                            <div class="swiper-slide">Slide 4</div>
+                        </div>
+                        
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
                 </neon-animatable>
             </neon-animated-pages>
         </paper-header-panel>
-        <paper-dialog with-Backdrop id="dialog" entry-animation="scale-up-animation" exit-animation="scale-down-animation">
+        <!-- Category List Template -->
+        <script type="text/template" id="category-list">
+                <paper-item-body two-line>
+                    <div><%= category %></div>
+                    <div secondary><%= categoryNum %></div>
+                </paper-item-body>
+                <paper-icon-button class="openBtn" icon="chevron-right"></paper-icon-button>
+                <paper-icon-button class="editBtn" icon="more-vert"></paper-icon-button>
+        </script>
+        
+        <!-- Model List Template -->
+        <script type="text/template" id="model-editor">
+                <paper-item-body two-line>
+                    <paper-input label="Side 1" class="side1"></paper-input>
+                    <paper-input labal="Side 2" class="side2"></paper-input>
+                    <paper-button class="save-card">Save</paper-button>
+                    <paper-button class="delete-card">Delete</paper-button>
+                </paper-item-body>
+        </script>
+        
+        <script type="text/template" id="swiper-parent">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                
+                </div>
+            </div>
+        </script>
+        <script type="text/template" id="swiper-card">
+            <div class="swiper-slide">
+                <paper-tabs selected="0">
+                    <paper-tab class="tab1">Side 1</paper-tab>
+                    <paper-tab class="tab2">Side 2</paper-tab>
+                </paper-tabs>
+                <iron-pages>
+                    <div><%= side1 %></div>
+                    <div><%= side2 %></div>
+                </iron-pages>
+            </div>
+        </script>
+        
+        <!-- Category Creation Dialog -->
+        <paper-dialog with-Backdrop id="dialogNew" entry-animation="scale-up-animation" exit-animation="scale-down-animation">
             <h2>Create a Category</h2>
             <div>
-                <paper-input id="new" label="Name"></paper-input>
+                <paper-input required id="new" label="Name" error-message="Error: Cannot be empty"></paper-input>
             </div>
             <div class="buttons">
                 <paper-button dialog-dismiss>
                     Cancel
                 </paper-button>
-                <paper-button dialog-confirm>
+                <paper-button class="confirm">
                     Create
                 </paper-button>
             </div>
         </paper-dialog>
-        <paper-dialog id="delete" entry-animation="scale-up-animation" exit-animation="scale-down-animation">
+        
+        <!-- Delete Category Dialog -->
+        <paper-dialog id="dialogDel" entry-animation="scale-up-animation" exit-animation="scale-down-animation">
             <h2>Delete Category</h2>
             <div>
                 <p>
@@ -216,25 +330,38 @@
                 <paper-button dialog-dismiss>
                     No
                 </paper-button>
-                <paper-button dialog-confirm>
+                <paper-button class="confirm">
                     Yes
                 </paper-button>
+            </div>
+        </paper-dialog>
+        
+        <!-- Help Message Dialog -->
+        <paper-dialog id="helpDialog" entry-animation="scale-up-animation" exit-animation="scale-down-animation">
+            <h2>Help</h2>
+            <div>
+                <p id="helpMessage">Click the plus button at the bottom to create a new card set.</p>
+            </div>
+            <div class="buttons">
+                <paper-button dialog-dismiss>OK</paper-button>
             </div>
         </paper-dialog>
         <script src="js/lib/jquery-1.11.3.min.js"></script>
         <script src="js/lib/underscore-min.js"></script>
         <script src="js/lib/backbone-min.js"></script>
         <script src="js/lib/backbone.localStorage-min.js"></script>
+        <script src="js/lib/swiper.jquery.min.js"></script>
         <script>
             // Dummy script to test the interface
-            var fab = document.getElementById("fab");
-            var popup = document.getElementById("dialog");
+            var fab = document.getElementById("CatFab");
+            var popup = document.getElementById("dialogNew");
 
             fab.addEventListener("click", dialog);
 
             function dialog() {
                 popup.open();
             }
+            
             
         </script>
     </body>

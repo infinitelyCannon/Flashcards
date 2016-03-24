@@ -133,9 +133,9 @@
                 -webkit-align-items: center;
                 align-items: center;
 			}
-			#errorToast{
-			    --paper-toast-background-color: red;
-			    --paper-toast-color: #ffffff;
+			
+			a{
+			    text-decoration:none;
 			}
         </style>
 
@@ -148,9 +148,10 @@
         <!-- Header -->
         <paper-header-panel id="header" mode="waterfall">
             <paper-toolbar id="toolbar">
-                <paper-icon-button disabled="true" href="#home" icon="home" id="home"></paper-icon-button>
+                <a href="#home" tabindex="-1"><paper-icon-button disabled="true" icon="home" id="home"></paper-icon-button></a>
                 <h1 class="title flex" style="text-align: left;">Flashcards</h1>
                 <paper-icon-button id="help" icon="help-outline"></paper-icon-button>
+                <paper-icon-button style="display: none;" id="remove" icon="delete"></paper-icon-button>
             </paper-toolbar>
             
            
@@ -159,6 +160,7 @@
                     <!--<div id="cover"></div>-->
                 <!-- Page 1.1: Main Menu -->
                 <neon-animatable id="page1">
+                <!--
                     <paper-item>
                         <paper-item-body two-line>
                             <div>
@@ -228,6 +230,7 @@
                             <paper-button>Delete</paper-button>
                         </paper-item-body>
                     </paper-item>
+                -->
                     <!-- Floating Action Button -->
                     <paper-fab id="CatFab" icon="create"></paper-fab>
                 </neon-animatable>
@@ -241,19 +244,7 @@
                 <neon-animatable id="page3">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <paper-tabs noink>
-                                    <paper-tab>Side 1</paper-tab>
-                                    <paper-tab>Side 2</paper-tab>
-                                </paper-tabs>
-                                <iron-pages selected="0">
-                                    <div>Hello</div>
-                                    <div>World!</div>
-                                </iron-pages>
-                            </div>
-                            <div class="swiper-slide">Slide 2</div>
-                            <div class="swiper-slide">Slide 3</div>
-                            <div class="swiper-slide">Slide 4</div>
+                            
                         </div>
                         
                         <!-- Add Pagination -->
@@ -264,22 +255,26 @@
         </paper-header-panel>
         <!-- Category List Template -->
         <script type="text/template" id="category-list">
+            <paper-item>
                 <paper-item-body two-line>
                     <div><%= category %></div>
-                    <div secondary><%= categoryNum %></div>
+                    <div secondary><%= categoryNum %><% print ((categoryNum === 1) ? " card":" cards") %></div>
                 </paper-item-body>
-                <paper-icon-button class="openBtn" icon="chevron-right"></paper-icon-button>
-                <paper-icon-button class="editBtn" icon="more-vert"></paper-icon-button>
+                <a href="#view/<%= category %>" tabindex="-1"><paper-icon-button class="openBtn" icon="chevron-right"></paper-icon-button></a>
+                <a href="#edit/<%= category %>" tabindex="-1"><paper-icon-button class="editBtn" icon="more-vert"></paper-icon-button></a>
+           </paper-item>
         </script>
         
         <!-- Model List Template -->
         <script type="text/template" id="model-editor">
+            <paper-item>
                 <paper-item-body two-line>
                     <paper-input label="Side 1" class="side1"></paper-input>
-                    <paper-input labal="Side 2" class="side2"></paper-input>
+                    <paper-input label="Side 2" class="side2"></paper-input>
                     <paper-button class="save-card">Save</paper-button>
                     <paper-button class="delete-card">Delete</paper-button>
                 </paper-item-body>
+            </paper-item>
         </script>
         
         <script type="text/template" id="swiper-parent">
@@ -290,16 +285,14 @@
             </div>
         </script>
         <script type="text/template" id="swiper-card">
-            <div class="swiper-slide">
-                <paper-tabs selected="0">
+                <paper-tabs class="tab" selected="0" noink>
                     <paper-tab class="tab1">Side 1</paper-tab>
                     <paper-tab class="tab2">Side 2</paper-tab>
                 </paper-tabs>
-                <iron-pages>
+                <iron-pages class="tabPages" selected="0">
                     <div><%= side1 %></div>
                     <div><%= side2 %></div>
                 </iron-pages>
-            </div>
         </script>
         
         <!-- Category Creation Dialog -->
@@ -323,7 +316,7 @@
             <h2>Delete Category</h2>
             <div>
                 <p>
-                    Are you sure you want to delete %CategoryName%?
+                    Are you sure you want to delete <span id="target"></span>?
                 </p>
             </div>
             <div class="buttons">
@@ -351,18 +344,24 @@
         <script src="js/lib/backbone-min.js"></script>
         <script src="js/lib/backbone.localStorage-min.js"></script>
         <script src="js/lib/swiper.jquery.min.js"></script>
+        <script src="js/main.js"></script>
         <script>
-            // Dummy script to test the interface
-            var fab = document.getElementById("CatFab");
-            var popup = document.getElementById("dialogNew");
-
-            fab.addEventListener("click", dialog);
-
-            function dialog() {
-                popup.open();
-            }
-            
-            
+            $(document).ready(function(){
+                /*
+                // Initialize the application
+                var cardSet = new app.CardSet;
+                var catList = new app.CatList;   
+                var dialogNew = new app.DialogNew;
+                var modelList = new app.ModelList;
+                var studyView = new app.StudyView;
+                var toolView = new app.ToolView;
+                var Router = new app.Workspace;
+                var helpDialog = new app.HelpDialog;
+                var deleteDialog = new app.DeleteDialog;
+                */
+               app.cardSet.fetch();
+               Backbone.history.start();
+            });
         </script>
     </body>
 </html>

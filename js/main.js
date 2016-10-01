@@ -1,60 +1,97 @@
-var EMPTY_LIST = "<p id='empty'>You have no cards setup. Use the create button to get started.</p>";
-var HOME_HELP = "Click the create button at the bottom to create a new card set.";
-var LIST_HELP = "Click the plus to create a new card. Press the trash button to delete the set.";
-var CARD_HELP = "Swipe (on mobile) or scroll with the mouse to navigate through the cards.";
 var app = app || {};
+var HOME_HELP = "Click the add button at the bottom to create a new category.<br />(All categories will have 1 card by default.)";
+var EDIT_HELP = "Click the create button to create a new card. Click the delete button to delete the category.";
+var VIEW_HELP = "Use the scroll wheel on the cards or swipe to view card set.";
+var EMPTY_NOTE = "<p id='empty'>You have no cards setup. Create a category to get started.</p>";
 var mySwiper;
+var dialogIN = document.getElementById("dialogInfo");
 
-// Models
+// Model(s)
 app.Card = Backbone.Model.extend({
-    defaults: {
-        side1: '',
-        side2: '',
-        category: ''
-    }
+   defaults:{
+       side1: '',
+       side2: '',
+       category: ''
+   } 
 });
 
-// Main Collection
+// Collection
 app.CardSet = Backbone.Collection.extend({
-    model: app.Card,
-    
-    localStorage: new Backbone.LocalStorage('flashcards-beta'),
-    
-    categories: function(name){
-        return this.pluck(name);
-    },
-    
-    hasName: function(name){
-        if(this.findWhere({category: name}) == undefined){
-            return false;
-        }
-        return true;
-    }
+   model: app.Card,
+   
+   localStorage: new Backbone.LocalStorage('flashcards-beta-v1'),
+   
+   categories: function(){
+       return _.uniq(this.pluck("category"));
+   },
+   
+   hasName: function(name){
+       if(this.findWhere({category: name}) === undefined){
+           return false;
+       }
+       return true;
+   },
+   
+   numOfCards: function(cat){
+       return this.where({category: cat}).length;
+   }
 });
 app.cardSet = new app.CardSet;
 app.cardSet.fetch();
 
-/* STATIC MODEL: CATEGORY DESCRIPTION */
-/*
-var CatSet = Backbone.Model.extend({
-    defaults:{
-        catNum: 0,
-        categories: []
+app.ModelListItem = Backbone.View.extend({
+    tagName: 'div',
+    
+    template: _.template( $("#modelEditor").html() ),
+    
+    events: {
+        'click .saveBtn': 'submit',
+        'click .delBtn': 'clear'
     },
     
-    urlRoot: "/catsetBeta",
-    
-    addNew: function(name){
+    initialize: function(){
+        this.$form;
         
+        //this.listenTo(this.$form[0], "iron-form-submit", this.update);
+        this.listenTo(this.model, "destroy", this.close);
+    },
+    
+    render: function(){        
+        this.$el.html( this.template(this.model.attributes) );
+        this.$form = this.$(".modelForm");
+        //this.listenTo(this.$form, "iron-form-submit", this.update);
+        this.$form.on("iron-form-submit", {context: this}, this.update);
+        
+        return this;
+    },
+    
+    submit: function(){
+        this.$form[0].submit(event);
+    },
+    
+    update: function(event){
+        /** jQuery Issue
+         * When called though the .on() binding this function gets called with the form element itself as the context
+         * Fix has been made that passes the View (this objcet) through event handler.
+         */
+        event.data.context.model.save({side1: event.detail.side1, side2: event.detail.side2});
+    },
+    
+    close: function(){
+        this.$form.off();
+        this.remove();
+        this.unbind();
+    },
+    
+    clear: function(){
+        this.model.destroy();
     }
 });
-*/
 
-// Views
 app.CatListItem = Backbone.View.extend({
     tagName: 'div',
     
-    template: _.template( $("#category-list").html() ),
+    template: _.template( $("#categoryList").html() ),
     
     render: function(info){
         this.$el.html( this.template(info) );
@@ -62,290 +99,91 @@ app.CatListItem = Backbone.View.extend({
     },
     
     close: function(){
-    	this.remove();
-    	this.unbind();
-    }
-});
-
-//TODO: Remove this view. Has been replaced with StudyViewItem.
-app.CardView = Backbone.View.extend({
-    tagName: 'div',
-    
-    className: 'swiper-slide',
-    
-    template: _.template( $("#swiper-card").html() ),
-    
-    events: {
-        "click .tab1": 'change',
-        "click .tab2": 'change'
-    },
-    
-    change: function(){
-        var selected = this.$("paper-tabs")[0].selected;
-        
-        this.$("iron-pages")[0].select(selected);
-    },
-    
-    close: function(){
         this.remove();
         this.unbind();
     }
 });
 
-/* STATIC VIEW: New Category Diaolog */
-app.DialogNew = Backbone.View.extend({
-    el: '#dialogNew',
+app.SwiperCardItem = Backbone.View.extend({
+    tagName: "div",
+    
+    className: "swiper-slide",
+    
+    template: _.template( $("#swiperCard").html() ),
     
     events: {
-        'click .confirm': 'newCategory'
-    },
-    
-    initialize: function(){
-      this.$input = this.$("#new");
-    },
-    
-    newCategory: function(){
-       // var isValid = (this.$input.validate() && cardSet.hasName());
-       this.$input.attr("error-message", "Error: Cannot be empty");
-        
-        if( this.$input[0].validate() ){
-            if( app.cardSet.hasName( this.$input[0].value ) ){
-                this.$input.attr("error-message", "Error: Category already exists");
-                this.$input.attr("invalid", true);
-            }else{
-                app.cardSet.create({category: this.$input[0].value.trim()});
-                this.$input[0].value = "";
-                this.el.close();
-            }
-        }else{
-            return;
-        }
-    },
-    
-    open: function(){
-        this.el.open();
-    }
-});
-app.dialogNew = new app.DialogNew;
-
-/** SATIC VIEW: Category List **/
-app.CatList = Backbone.View.extend({
-    el: "#page1",
-    
-    collection: app.cardSet,
-    
-    events: {
-      "click #CatFab": "newCat"
-    },
-    
-    initialize: function(){
-        this.views = [];
-        
-        this.listenTo(this.collection, "update", this.render);
-        this.render();
+        "click .tab": "selectTab"
     },
     
     render: function(){
-        if(this.collection.length == 0){
-            this.clear;
-            this.$el.append(EMPTY_LIST);
-            return;
-        }
-        
-        if(this.views.length != 0){
-            this.clear;
-        }
-        
-        if( $("#empty") ){
-            $("#empty").remove();
-        }
-        
-        var categoryList = this.collection.pluck('category');
-        
-        for(var i = 0; i < categoryList.length; i++){
-        	var newInfo = {category: categoryList[i], categoryNum: this.collection.where({category: categoryList[i]}).length };
-            var newItem = new app.CatListItem();
-            
-            this.$el.append( newItem.render(newInfo).el );
-            
-            this.views.push(newItem);
-            
-            console.log(this.views);
-        }
-        
-    },
-    
-    clear: function(){
-        $("#empty").remove();
-        
-        for(var i = 0; i < this.views.length; i++){
-            this.views[i].close();
-            delete this.views[i];
-        }
-        this.views = _.compact(this.views);
-    },
-    
-    newCat: function(){
-        app.dialogNew.open();
-    }
-});
-app.catList = new app.CatList;
-
-/* SATIC VIEW: Model List */
-app.ModelList = Backbone.View.extend({
-    el: "#page2",
-    
-    collection: app.cardSet,
-    
-    events: {
-        "click #ModelFab": "newModel"
-    },
-    
-    initialize: function(){
-        this.views = [];
-        this.catName = "";
-    },
-    
-    render: function(cat){
-        this.catName = cat;
-        
-        var models = this.collection.where({category: cat});
-        
-        for(var i = 0; i < models.length; i++){
-            var newModel = new app.ModelListItem({model: models[i]});
-            
-            this.$el.append( newModel.render().el );
-            
-            this.views.push(newModel);
-        }
-    },
-    
-    newModel: function(){
-        var newcard = new app.Card({category: this.catName});
-        var newView = new app.ModelListItem( {model: newcard} );
-        
-        this.$el.append( newView.render().el );
-        
-        this.views.push(newView);
-        
-        this.collection.add(newcard);
-    },
-    
-    clear: function(){
-    	for(var i = 0; i < this.views.length; i++){
-    	    this.views[i].close();
-    		delete this.views[i];
-    	}
-    	this.views = _.compact(this.views);
-    }
-});
-app.modelList = new app.ModelList;
-
-/* STATIC VIEW: Flashcard Viewer */
-app.StudyView = Backbone.View.extend({
-	el: ".swiper-wrapper",
-	
-	collection: app.cardSet,
-	
-	initialize: function(){
-		this.views = [];
-	},
-	
-	render: function(cat){
-		var models = this.collection.where({category: cat});
-		
-		for(var i = 0; i < models.length; i++){
-			var card = new app.StudyViewItem({model: models[i]});
-			
-			this.$el.append( card.render.el );
-			
-			this.views.push(card);
-		}
-		
-		mySwiper = new Swiper(".swiper-container", {
-			direction: 'horizontal',
-			loop: false,
-			pagination: ".swiper-pagination",
-			spaceBetween: 200,
-			mousewheelControl: true
-		});
-	},
-	
-	clear: function(){
-		mySwiper.destroy(true, true);
-		for(var i = 0; i < this.views.length; i++){
-		    this.views[i].close();
-		    delete this.views[i];
-		}
-		this.views = _.compact(this.views);
-	}
-});
-app.studyView = new app.StudyView;
-
-app.ModelListItem = Backbone.View.extend({
-    tagName: 'div',
-    
-    template: _.template( $("#model-editor").html() ),
-    
-    events: {
-        "click .save-card": "update",
-        "click .delete-card": "remove"
-    },
-    
-    initialize: function(){
-    	this.listenTo(this.model, "destroy", this.close);
-    },
-    
-    render: function(){
-        this.$el.html( this.template() );
-        this.$(".side1")[0].value = this.model.side1;
-        this.$(".side2")[0].value = this.model.side2;
+        this.$el.html( this.template(this.model.attributes) );
         return this;
     },
     
-    update: function(){
-        this.model.save({ side1: this.$(".side1")[0].value.trim(), side2: this.$(".side2")[0].value.trim() });
+    selectTab: function(){
+        this.$(".tabPages")[0].select( this.$(".tab")[0].selected );
     },
     
     close: function(){
         this.remove();
         this.unbind();
-    },
-    
-    remove: function(){
-        this.model.destroy();
-        this.remove();
-        this.unbind();
     }
 });
 
-app.StudyViewItem = Backbone.View.extend({
-	className: "swiper-slide",
-	
-	tagName: "div",
-	
-	template: _.template( $("#swiper-card").html() ),
-	
-	events: {
-		"click .tab": "update"
-	},
-	
-	update: function(){
-		this.$(".tabPages")[0].select( this.$(".tab")[0].selected );
-	},
-	
-	render: function(){
-		this.$el.html( this.template(this.model.attributes) );
-		return this;
-	},
-	
-	close: function(){
-		this.remove();
-		this.unbind();
-	}
+/* STATIC VIEW: Toolbar */
+app.ToolView = Backbone.View.extend({
+    el: '#toolbar',
+    
+    events: {
+        'click #help': 'helpMessage',
+        'click #remove': 'clearCat',
+        'click #back': 'back',
+        'click #info': 'info'
+    },
+    
+    initialize: function(){
+        this.$title = $(".title");
+    },
+    
+    updateTitle: function(name){
+        this.$title.html(name);
+    },
+    
+    helpMessage: function(){
+        app.helpDialog.help();
+    },
+    
+    showBack: function(){
+        $("#back").show();
+    },
+    
+    hideBack: function(){
+        $("#back").hide();
+    },
+    
+    showDel: function(){
+        $("#remove").show();
+    },
+    
+    hideDel: function(){
+        $("#remove").hide();
+    },
+    
+    clearCat: function(){
+        app.delDialog.start();
+    },
+    
+    back: function(){
+        app.Router.navigate("home", {trigger: true, replace: true});
+    },
+    
+    info: function(){
+    	dialogIN.open();
+    }
 });
+app.toolView = new app.ToolView;
 
-/** STATIC VIEW: Help Dialog **/
+/* STATIC VIEW: Help Dialog */
 app.HelpDialog = Backbone.View.extend({
     el: "#helpDialog",
     
@@ -357,104 +195,272 @@ app.HelpDialog = Backbone.View.extend({
     help: function(){
         this.message.html(this.helpMessage);
         this.el.open();
+    },
+    
+    setMessage: function(msg){
+        this.helpMessage = msg;
     }
 });
 app.helpDialog = new app.HelpDialog;
 
-/* STATIC VIEW: Delete Category Dialog */
-app.DeleteDialog = Backbone.View.extend({
-	el: "#dialogDel",
-	
-	events:{
-		'click .confirm': 'removeCat'
-	},
-	
-	initialize: function(){
-		this.target = "";
-	},
-	
-	removeCat: function(){
-		var targets = cardSet.where({category: target});
-		cardSet.remove(targets);
-		this.el.close();
-		Router.navigate("#home", {trigger: true});
-	},
-	
-	removeQuery: function(name){
-		this.target = name;
-		this.$("#target").html(name);
-		this.el.open();
-	}
-});
-app.deleteDialog = new app.DeleteDialog;
-
-/* STATIC VIEW: Toolbar */
-app.ToolView = Backbone.View.extend({
-    el: "#toolbar",
+/* STATIC VIEW: Delete Dialog */
+app.DelDialog = Backbone.View.extend({
+    el: "#dialogDel",
     
     events: {
-        'click #help': 'helpMessage',
-        'click #remove': 'deleteCategory'
+        'click .confirm': 'clear'
+    },
+    
+    start: function(){
+        this.el.open();
+    },
+    
+    clear: function(){
+        this.el.close();
+        app.modelList.clearAll();
+        app.Router.navigate("home", {trigger: true, replace: true});
+    }
+});
+app.delDialog = new app.DelDialog;
+
+/* STATIC VIEW: Page 1 */
+app.CatList = Backbone.View.extend({
+    el: "#page1",
+    
+    events: {
+        'click #CatFab': 'newFab'
     },
     
     initialize: function(){
-        this.$title = $(".title");
+        this.views = [];
+        
+        this.listenTo(app.cardSet, "add", this.render);
+        this.render();
     },
     
-    helpMessage: function(){
-        app.helpDialog.help();
+    render: function(){
+        var cats = app.cardSet.categories();
+        var newInfo;
+        var newItem;
+        
+        /**
+         * Retrieve the list of categories.
+         * Clear out whatever already exists.
+         * Then, for every unique category create a new cat list item
+         */
+        this.clear();
+        
+        if(cats.length !== 0){
+            for(var i = 0; i < cats.length; i++){
+                newInfo = {category: cats[i], categoryNum: app.cardSet.numOfCards(cats[i])};
+                newItem = new app.CatListItem();
+                this.$el.append( newItem.render(newInfo).el );
+                this.views.push(newItem);
+            }
+        }
+        
+        if(this.$el.children("div").length === 0){
+            this.$el.prepend(EMPTY_NOTE);
+        }
     },
     
-    updateTitle: function(name){
-        this.$title.html(name);
+    newFab: function(){
+        app.newDialog.open();
     },
     
-    showDel: function(){
-      this.$("#remove").show();  
-    },
-    
-    hideDel: function(){
-        this.$("#remove").hide();
-    },
-    
-    deleteCategory: function(){
-    	app.deleteDialog.removeQuery( this.$title.html().trim() );
+    clear: function(){
+        if( $("#empty").length !== 0 ){
+            $("#empty").remove();
+        }
+        
+        for(var j = 0; j < this.views.length; j++){
+            this.views[j].close();
+            delete this.views[j];
+        }
+        this.views = _.compact(this.views);
     }
 });
-app.toolView = new app.ToolView;
+app.catList = new app.CatList;
 
-// Rouoter
+/* STATIC VIEW: Page 2 */
+app.ModelList = Backbone.View.extend({
+    el: "#page2",
+    
+    events: {
+        'click #ModelFab': 'createModel'
+    },
+    
+    initialize: function(){
+        this.views = [];
+        this.category = "";
+        this.cards = [];
+    },
+    
+    render: function(cat){
+        this.category = cat;
+        this.cards = app.cardSet.where({category: cat});
+        var newItem;
+        
+        this.clear();
+        
+        for(var k = 0; k < this.cards.length; k++){
+            newItem = new app.ModelListItem({model: this.cards[k]});
+            this.$el.append(newItem.render().el);
+            this.views.push(newItem);
+        }
+    },
+    
+    createModel: function(){
+        var newModel = new app.Card({category: this.category});
+        var newView = new app.ModelListItem({model: newModel});
+        app.cardSet.add(newModel);
+        this.$el.append(newView.render().el);
+        this.views.push(newView);
+    },
+    
+    clear: function(){
+        for(var l = 0; l < this.views.length; l++){
+            this.views[l].close();
+            delete this.views[l];
+        }
+        this.views = _.compact(this.views);
+    },
+    
+    clearAll: function(){
+        for(var m = 0; m < this.cards.length; m++){
+            this.cards[m].destroy();
+        }
+        this.cards = [];
+        this.views = [];
+    }
+});
+app.modelList = new app.ModelList;
+
+/* STATIC VIEW: Page 3 */
+/*
+ * Note Regarding Swiper: 
+ * The swiper set of sliders must be instantiated AFTER neon-animated-pages switches to the third page.
+ */
+app.StudyList = Backbone.View.extend({
+    el: "#page3",
+    
+    initialize: function(){
+        this.swipeWrapper = this.$(".swiper-wrapper");
+        this.cards = [];
+        this.views = [];
+    },
+    
+    render: function(cat){
+        this.cards = app.cardSet.where({category: cat});
+        var newCard;
+        
+        for(var i = 0; i < this.cards.length; i++){
+            newCard = new app.SwiperCardItem({model: this.cards[i]});
+            this.swipeWrapper.append(newCard.render().el);
+            this.views.push(newCard);
+        }
+    },
+    
+    clear: function(){
+        for(var i = 0; i < this.views.length; i++){
+            this.views[i].close();
+            delete this.views[i];
+        }
+        this.views = [];
+        
+        if(mySwiper !== undefined){
+            mySwiper.destroy();
+            mySwiper = undefined;
+        }
+    },
+    
+    launch: function(){
+        mySwiper = new Swiper('.swiper-container',{
+            direction: 'horizontal',
+            loop: true,
+            pagination: '.swiper-pagination',
+            spaceBetween: 200,
+            mousewheelControl: true
+        });
+    }
+});
+app.studyList = new app.StudyList;
+
+/* STATIC VIEW: New Categorry Dialog */
+app.NewDialog = Backbone.View.extend({
+   el: "#dialogNew",
+   
+   events:{
+       'click .confirm': 'submit'
+   },
+   
+   initialize: function(){
+       this.$form = this.$("#dialogForm");
+       this.$input = this.$("#new");
+       
+       this.listenTo(this.$form[0], "iron-form-submit", this.newCategory);
+   },
+   
+   open: function(){
+       this.el.open();
+   },
+   
+   submit: function(){
+       
+       this.$form[0].submit(event);
+       /*
+       app.cardSet.create({category: cat});
+       this.$input[0].value = "";
+       this.el.close();
+       */
+   },
+   
+   newCategory: function(event){
+       //console.log(JSON.stringify(event.detail));
+       app.cardSet.create({category: event.detail.category});
+       this.$input[0].value = "";
+       this.el.close();
+   }
+});
+app.newDialog = new app.NewDialog;
+
 app.Workspace = Backbone.Router.extend({
     routes: {
-        "home": "home",
-        "edit/:category": "page2",
-        "view/:category": "page3"
+        "home":             "home",
+        "edit/:category":   "edit",
+        "view/:category":   "view"
     },
     
-    home: function(category){
+    home: function(){
+        app.catList.render();
         $("#pages")[0].select(0);
+        app.toolView.hideBack();
         app.toolView.hideDel();
-        app.toolView.$title.html("Flashcards");
+        app.toolView.updateTitle("Flashcards");
+        app.helpDialog.setMessage(HOME_HELP);
         app.modelList.clear();
-        app.studyView.clear();
-        app.helpDialog.helpMessage = HOME_HELP;
+        app.studyList.clear();
     },
     
-    page2: function(category){
-    	app.toolView.showDel();
-    	app.toolView.$title.html(category);
-    	$("#home").attr("disabled", false);
-    	$("#pages")[0].select(1);
-    	app.modelList.render(category);
-    	app.helpDialog.helpMessage = LIST_HELP;
+    edit: function(category){
+        app.modelList.render(category);
+        $("#pages")[0].select(1);
+        app.toolView.showBack();
+        app.toolView.showDel();
+        app.toolView.updateTitle(category);
+        app.helpDialog.setMessage(EDIT_HELP);
     },
     
-    page3: function(category){
-        app.toolView.hideDel();
-        app.toolView.$title.html(category);
-    	$("#pages")[0].select(2);
-    	app.studyView.render(category);
-    	app.helpDialog.helpMessage = CARD_HELP;
+    view: function(category){
+        $("#pages")[0].select(2);
+        app.studyList.render(category);
+        app.toolView.showBack();
+        app.toolView.updateTitle(category);
+        app.studyList.launch();
+        app.helpDialog.setMessage(VIEW_HELP);
     }
 });
 app.Router = new app.Workspace;
+
+// Begin Backbone Routing
+Backbone.history.start();

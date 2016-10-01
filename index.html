@@ -1,314 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-
-        <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
-        Remove this if you use the .htaccess -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-        <title>Flashcards | Main Directory</title>
-        <meta name="description" content="">
-        <meta name="author" content="infinitelyCannon">
-        <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-
+        <title>Flashcards</title>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+        
         <!-- Polymer Imports -->
-        <link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html" />
-        <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html" />
+        <link rel="import" href="bower_components/paper-elements/paper-elements.html" />
         <link rel="import" href="bower_components/font-roboto/roboto.html" />
         <link rel="import" href="bower_components/iron-icons/iron-icons.html" />
-        <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html" />
-        <link rel="import" href="bower_components/iron-image/iron-image.html" />
-        <link rel="import" href="bower_components/paper-drawer-panel/paper-drawer-panel.html" />
-        <link rel="import" href="bower_components/paper-item/paper-item.html" />
-        <link rel="import" href="bower_components/paper-button/paper-button.html" />
-        <link rel="import" href="bower_components/paper-ripple/paper-ripple.html" />
-        <link rel="import" href="bower_components/iron-icons/communication-icons.html" />
-        <link rel="import" href="bower_components/iron-icons/social-icons.html" />
-        <link rel="import" href="bower_components/iron-icons/hardware-icons.html" />
-        <link rel="import" href="bower_components/paper-card/paper-card.html" />
-        <link rel="import" href="bower_components/paper-fab/paper-fab.html" />
-        <link rel="import" href="bower_components/paper-dialog/paper-dialog.html" />
-        <link rel="import" href="bower_components/paper-input/paper-input.html" />
+        <link rel="import" href="bower_components/iron-form/iron-form.html" />
         <link rel="import" href="bower_components/iron-pages/iron-pages.html" />
-        <link rel="import" href="bower_components/paper-tabs/paper-tabs.html" />
-        <link rel="import" href="bower_components/paper-listbox/paper-listbox.html" />
+        <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html" />
         <link rel="import" href="bower_components/neon-animation/neon-animated-pages.html" />
         <link rel="import" href="bower_components/neon-animation/animations/scale-up-animation.html" />
         <link rel="import" href="bower_components/neon-animation/animations/scale-down-animation.html" />
         <link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html" />
         <link rel="import" href="bower_components/neon-animation/animations/slide-left-animation.html" />
-        <link rel="import" href="bower_components/iron-flex-layout/classes/iron-flex-layout.html" />
-
-        <!-- Materialize CSS custom build from SASS -->
-        <link rel="stylesheet" href="css/build.css" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-        <link rel="stylesheet" href="css/swiper.min.css" />
+        
+        <!-- Other Bower Imports -->
+        <link rel="stylesheet" href="bower_components/Swiper/dist/css/swiper.css" />
         <style>
-			/* Webkit overrite to remove default visial highlight */
-			paper-icon-button, paper-fab, paper-button {
-				-webkit-tap-highlight-color: rgba(0,0,0,0.0);
-			}
-
-			paper-item-body {
-				width: 100%;
-			}
-			paper-item {
-				border-bottom: 1px solid #CCCCCC;
-			}
-			paper-item:first-child{
-			    border-top: 1px solid #CCCCCC;
-			}
-			div[secondary] {
-				color: #737373;
-				-webkit-font-smoothing: antialiased;
-				font-size: 14px;
-				font-weight: 400;
-				line-height: 20px;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-			}
-			paper-fab {
-				position: fixed;
-				bottom: 10px;
-				right: 10px;
-			}
-			#cover{
-			    position:absolute;
-			    top: 0;
-			    left: 0;
-			    width: 100%;
-			    height: 100%;
-			    z-index: 200;
-			    background-color:#abc;
-			    transform: scale(0,0);
-			}
-			.swiper-container{
-			    width: 96%;
-			    height: 300px;
-			    margin: 20px auto;
-			    
-			}
-			.swiper-slide{
-			    text-align:center;
-			    font-size: 18px;
-			    background: #F5F5F5;
-			    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-			    
-			    /* Center slide text vertically 
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: -webkit-flex;
-                display: flex;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                -webkit-justify-content: center;
-                justify-content: center;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                -webkit-align-items: center;
-                align-items: center;
-                */
-			}
-			paper-tabs{
-			    background-color: #536DFE;
-			    color: #FFFFFF;
-			}
-			.swiper-slide > iron-pages{
-			    /* Center slide test vertically */
-			    height: 252px;
-			    display: -webkit-box;
-                display: -ms-flexbox;
-                display: -webkit-flex;
-                display: flex;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                -webkit-justify-content: center;
-                justify-content: center;
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                -webkit-align-items: center;
-                align-items: center;
-			}
-			
-			a{
-			    text-decoration:none;
-			}
+            .swiper-container{
+                width: 96%;
+                height: 300px;
+                margin: 20px auto;
+            }
         </style>
-
-        <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-        <link rel="shortcut icon" href="/favicon.ico">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        
+        <link rel="stylesheet" href="css/main.css" type="text/css" />
+        <style is="custom-style">
+            #page2 > paper-item{
+                --paper-item-focused:{
+                    background: rgba(0,0,0,0);
+                };
+                --paper-item-focused-before:{
+                    opacity: 0;
+                };
+            }
+        </style>
+        <style is="custom-style">
+            .tab{
+                --paper-tabs-selection-bar-color: #ff4081;
+            }
+        </style>
     </head>
-
     <body class="fullbleed layout vertical">
+    
         <!-- Header -->
         <paper-header-panel id="header" mode="waterfall">
             <paper-toolbar id="toolbar">
-                <a href="#home" tabindex="-1"><paper-icon-button disabled="true" icon="home" id="home"></paper-icon-button></a>
-                <h1 class="title flex" style="text-align: left;">Flashcards</h1>
+                <paper-icon-button id="back" href="#home" icon="arrow-back" style="display:none;"></paper-icon-button>
+                <h1 class="title flex">Flashcards</h1>
                 <paper-icon-button id="help" icon="help-outline"></paper-icon-button>
-                <paper-icon-button style="display: none;" id="remove" icon="delete"></paper-icon-button>
+                <paper-icon-button id="remove" icon="delete" style="display:none;"></paper-icon-button>
+                <paper-icon-button id="info" icon="info-outline"></paper-icon-button>
             </paper-toolbar>
             
-           
-            <!-- Main Content: Single page application -->
+            <!-- Main Content: Single Page Application -->
             <neon-animated-pages id="pages" class="flex" selected="0" entry-animation="slide-from-right-animation" exit-animation="slide-left-animation">
-                    <!--<div id="cover"></div>-->
                 <!-- Page 1.1: Main Menu -->
                 <neon-animatable id="page1">
-                <!--
-                    <paper-item>
-                        <paper-item-body two-line>
-                            <div>
-                                Category Name
-                            </div>
-                            <div secondary>
-                                # of models
-                            </div>
-                        </paper-item-body>
-                        <paper-icon-button class="openBtn" icon="chevron-right"></paper-icon-button>
-                        <paper-icon-button class="editBtn" icon="more-vert"></paper-icon-button>
-                    </paper-item>
-                    <paper-item>
-                        <paper-item-body two-line>
-                            <div>
-                                Category Name
-                            </div>
-                            <div secondary>
-                                # of models
-                            </div>
-                        </paper-item-body>
-                        <paper-icon-button icon="create"></paper-icon-button>
-                        <paper-icon-button class="deleteBtn" icon="delete"></paper-icon-button>
-                    </paper-item>
-                    <paper-item>
-                        <paper-item-body two-line>
-                            <div>
-                                Category Name
-                            </div>
-                            <div secondary>
-                                # of models
-                            </div>
-                        </paper-item-body>
-                        <paper-icon-button icon="create"></paper-icon-button>
-                        <paper-icon-button class="deleteBtn" icon="delete"></paper-icon-button>
-                    </paper-item>
-                    <p>Model Display prototype: Card editor</p>
-                    <paper-card>
-                        <paper-input label="Side 1"></paper-input>
-                        <paper-input label="Side 2"></paper-input>
-                        <div class="card-actions">
-                            <paper-button>Save</paper-button>
-                            <paper-button>Delete</paper-button>
-                        </div>
-                    </paper-card>
-                    <paper-item>
-                        <paper-item-body two-line>
-                            <paper-input label="Side 1"></paper-input>
-                            <paper-input label="Side 2"></paper-input>
-                            <paper-button>Save</paper-button>
-                            <paper-button>Delete</paper-button>
-                        </paper-item-body>
-                    </paper-item>
-                    <paper-item>
-                        <paper-item-body two-line>
-                            <paper-input label="Side 1"></paper-input>
-                            <paper-input label="Side 2"></paper-input>
-                            <paper-button>Save</paper-button>
-                            <paper-button>Delete</paper-button>
-                        </paper-item-body>
-                    </paper-item>
-                    <paper-item>
-                        <paper-item-body two-line>
-                            <paper-input label="Side 1"></paper-input>
-                            <paper-input label="Side 2"></paper-input>
-                            <paper-button>Save</paper-button>
-                            <paper-button>Delete</paper-button>
-                        </paper-item-body>
-                    </paper-item>
-                -->
-                    <!-- Floating Action Button -->
-                    <paper-fab id="CatFab" icon="create"></paper-fab>
+                    
+                    
+                    <paper-fab id="CatFab" icon="add"></paper-fab>
                 </neon-animatable>
                 
                 <!-- Page 1.2: Category Editor -->
                 <neon-animatable id="page2">
-                    <paper-fab id="ModelFab" icon="add"></paper-fab>
+                    <!--
+                    <paper-item>
+                        <paper-item-body two-line>
+                            <form id="testForm" is="iron-form" method="get" action="/">
+                                <paper-input id="test" name="side1" label="Side 1" value="Testing"></paper-input>
+                                <paper-input name="side2" label="Side 2" value=""></paper-input>
+                                <paper-button class="saveBtn">Save</paper-button>
+                                <paper-button class="delBtn">Delete</paper-button>
+                            </form>
+                        </paper-item-body>
+                    </paper-item>
+                    <paper-item>
+                        <paper-item-body two-line>
+                            <form is="iron-form" action="/" method="get">
+                                <paper-input name="side1" label="Side 1"></paper-input>
+                                <paper-input name="side2" label="Side 2"></paper-input>
+                                <paper-button>Save</paper-button>
+                                <paper-button>Delete</paper-button>
+                            </form>
+                        </paper-item-body>
+                    </paper-item>
+                    <paper-item>
+                        <paper-item-body two-line>
+                            <paper-input label="Side 1"></paper-input>
+                            <paper-input label="Side 2"></paper-input>
+                            <paper-button>Save</paper-button>
+                            <paper-button>Delete</paper-button>
+                        </paper-item-body>
+                    </paper-item>
+                    -->
+                    
+                    <paper-toast text="Card Saved" id="CatMsg"></paper-toast>
+                    <paper-fab id="ModelFab" icon="create"></paper-fab>
                 </neon-animatable>
                 
-                <!-- Page 1.3: Flashcards Page -->
+                <!-- Page 1.3: Card Viewer -->
                 <neon-animatable id="page3">
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             
                         </div>
-                        
-                        <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>
                     </div>
                 </neon-animatable>
             </neon-animated-pages>
         </paper-header-panel>
-        <!-- Category List Template -->
-        <script type="text/template" id="category-list">
-            <paper-item>
-                <paper-item-body two-line>
-                    <div><%= category %></div>
-                    <div secondary><%= categoryNum %><% print ((categoryNum === 1) ? " card":" cards") %></div>
-                </paper-item-body>
-                <a href="#view/<%= category %>" tabindex="-1"><paper-icon-button class="openBtn" icon="chevron-right"></paper-icon-button></a>
-                <a href="#edit/<%= category %>" tabindex="-1"><paper-icon-button class="editBtn" icon="more-vert"></paper-icon-button></a>
-           </paper-item>
-        </script>
-        
-        <!-- Model List Template -->
-        <script type="text/template" id="model-editor">
-            <paper-item>
-                <paper-item-body two-line>
-                    <paper-input label="Side 1" class="side1"></paper-input>
-                    <paper-input label="Side 2" class="side2"></paper-input>
-                    <paper-button class="save-card">Save</paper-button>
-                    <paper-button class="delete-card">Delete</paper-button>
-                </paper-item-body>
-            </paper-item>
-        </script>
-        
-        <script type="text/template" id="swiper-parent">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                
-                </div>
-            </div>
-        </script>
-        <script type="text/template" id="swiper-card">
-                <paper-tabs class="tab" selected="0" noink>
-                    <paper-tab class="tab1">Side 1</paper-tab>
-                    <paper-tab class="tab2">Side 2</paper-tab>
-                </paper-tabs>
-                <iron-pages class="tabPages" selected="0">
-                    <div><%= side1 %></div>
-                    <div><%= side2 %></div>
-                </iron-pages>
-        </script>
-        
-        <!-- Category Creation Dialog -->
+    
+    
+        <!-- New Category Dialog -->
         <paper-dialog with-Backdrop id="dialogNew" entry-animation="scale-up-animation" exit-animation="scale-down-animation">
             <h2>Create a Category</h2>
-            <div>
-                <paper-input required id="new" label="Name" error-message="Error: Cannot be empty"></paper-input>
-            </div>
-            <div class="buttons">
-                <paper-button dialog-dismiss>
-                    Cancel
-                </paper-button>
-                <paper-button class="confirm">
-                    Create
-                </paper-button>
-            </div>
+            <form id="dialogForm" is="iron-form" method="get" action="/">
+                <div>
+                    <paper-input name="category" required id="new" label="Name" error-message="Error: Cannot be empty"></paper-input>
+                </div>
+                <div class="buttons">
+                    <paper-button dialog-dismiss>Cancel</paper-button>
+                    <paper-button class="confirm">Create</paper-button>
+                </div>
+            </form>
         </paper-dialog>
         
         <!-- Delete Category Dialog -->
@@ -316,7 +136,7 @@
             <h2>Delete Category</h2>
             <div>
                 <p>
-                    Are you sure you want to delete <span id="target"></span>?
+                    Are you sure you want to delete this category?
                 </p>
             </div>
             <div class="buttons">
@@ -329,39 +149,106 @@
             </div>
         </paper-dialog>
         
+        <!-- App Info Dialog -->
+        <paper-dialog id="dialogInfo" entry-animation="scale-up-animation" exit-animation="scale-down-animation">
+        	<h2>Flashcards client side app</h2>
+        	<div>
+        		<p>Created by Dakrai Simmons, uses these external libraries:</p>
+        		<ul>
+        			<li>
+        				<a href="http://backbonejs.org/" tabindex="-1" target="_blank"><paper-button>Backbone.js</paper-button></a>
+        			</li>
+        			<li>
+        				<a href="http://jquery.com/" tabindex="-1" target="_blank"><paper-button>jQuery</paper-button></a>
+        			</li>
+        			<li>
+        				<a href="https://www.polymer-project.org/1.0/" tabindex="-1" target="_blank"><paper-button>Polymer</paper-button></a>
+        			</li>
+        			<li>
+        				<a href="http://idangero.us/swiper/" tabindex="-1" target="_blank"><paper-button>Swiper</paper-button></a>
+        			</li>
+        		</ul>
+        	</div>
+        </paper-dialog>
+        
         <!-- Help Message Dialog -->
         <paper-dialog id="helpDialog" entry-animation="scale-up-animation" exit-animation="scale-down-animation">
             <h2>Help</h2>
             <div>
-                <p id="helpMessage">Click the plus button at the bottom to create a new card set.</p>
+                <p id="helpMessage">Lorem Ipsum sit dolor amet.</p>
             </div>
             <div class="buttons">
                 <paper-button dialog-dismiss>OK</paper-button>
             </div>
         </paper-dialog>
-        <script src="js/lib/jquery-1.11.3.min.js"></script>
+        
+        <script type="text/template" id="categoryList">
+            <paper-item>
+                <paper-item-body two-line>
+                    <div><%= category %></div>
+                    <div secondary><%= categoryNum %><% print ((categoryNum === 1) ? " card":" cards") %></div>
+                </paper-item-body>
+                <a href="#view/<%= category %>" tabindex="-1"><paper-icon-button class="openBtn" icon="chevron-right"></paper-icon-button></a>
+                <a href="#edit/<%= category %>" tabindex="-1"><paper-icon-button class="editBtn" icon="more-vert"></paper-icon-button></a>
+           </paper-item>
+        </script>
+        <script type="text/template" id="modelEditor">
+            <paper-item>
+                <paper-item-body two-line>
+                    <form class="modelForm" is="iron-form" method="get" action="/">
+                        <paper-input name="side1" label="Side 1" value="<%= side1 %>"></paper-input>
+                        <paper-input name="side2" label="Side 2" value="<%= side2 %>"></paper-input>
+                        <paper-button class="saveBtn">Save</paper-button>
+                        <paper-button class="delBtn">Delete</paper-button>
+                    </form>
+                </paper-item-body>
+            </paper-item>
+        </script>
+        <script type="text/template" id="swiperCard">
+            <paper-tabs class="tab" selected="0">
+                <paper-tab class="tab1">Side 1</paper-tab>
+                <paper-tab class="tab2">Side 2</paper-tab>
+            </paper-tabs>
+            <iron-pages class="tabPages" selected="0">
+                <div><span class="slide"><%= side1 %></span></div>
+                <div><span class="slide"><%= side2 %></span></div>
+            </iron-pages>
+        </script>
+        
+        <script src="js/lib/jquery-3.0.0.min.js"></script>
         <script src="js/lib/underscore-min.js"></script>
         <script src="js/lib/backbone-min.js"></script>
         <script src="js/lib/backbone.localStorage-min.js"></script>
-        <script src="js/lib/swiper.jquery.min.js"></script>
+        <script src="bower_components/Swiper/dist/js/swiper.jquery.min.js"></script>
         <script src="js/main.js"></script>
         <script>
-            $(document).ready(function(){
-                /*
-                // Initialize the application
-                var cardSet = new app.CardSet;
-                var catList = new app.CatList;   
-                var dialogNew = new app.DialogNew;
-                var modelList = new app.ModelList;
-                var studyView = new app.StudyView;
-                var toolView = new app.ToolView;
-                var Router = new app.Workspace;
-                var helpDialog = new app.HelpDialog;
-                var deleteDialog = new app.DeleteDialog;
-                */
-               app.cardSet.fetch();
-               Backbone.history.start();
+            /* For Later:
+             * Create the view for the model editor where each containes listeners that execute the submit() for each corresponding form element. */
+            function _submit(event){
+                Polymer.dom(event).localTarget.parentElement.submit();
+            }
+            
+            /*
+             * For some reason, the Dialog view's listener for the 'iron-form-submit' does not fire on its own.
+             * This event listener is a patch until a solution is found.
+             */
+            document.getElementById("dialogForm").addEventListener("iron-form-submit", function(event){
+                app.newDialog.newCategory(event);                
             });
+            
+            // TODO: Have an event fire when the input in the model editor is changed to compare
+            /*
+            document.getElementById("test").addEventListener("change", function(){
+                if( $("#test")[0].value === "Testing" ){
+                    console.log("Same old...");
+                }else{
+                    console.log("New value!");
+                }
+            });
+            */
+            document.getElementById("dialogInfo").addEventListener("click", function(){
+            	$("#dialogInfo")[0].open();
+            })
         </script>
     </body>
 </html>
